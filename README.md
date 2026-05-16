@@ -1,5 +1,9 @@
 # SantaLucia
 
+## 项目来源与致谢
+
+本项目初期参考并引用了 [Shanyin-ai/Story-to-game](https://github.com/Shanyin-ai/Story-to-game) 的模板与基础结构，在此基础上整理、改写并制作了《桑塔露琪亚》Sonnyboy 视角的分支剧情版本。
+
 《桑塔露琪亚》Sonnyboy 视角文游是一款关于家族、控制、离家与回头的中文分支剧情游戏。
 
 玩家将从 Sonnyboy 被 Luciano 带回 Bocchetti 家族开始，经历他和 Chi Chi 从陌生、试探、依赖、伤害，到面对家族继承、真相、离家、救援与传记改写的完整路线。
