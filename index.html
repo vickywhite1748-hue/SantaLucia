@@ -309,6 +309,10 @@
       display: none !important;
     }
 
+    body[data-debug-editor="off"] [data-debug-editor-control] {
+      display: none !important;
+    }
+
     body[data-theme="paper"][data-color-mode="dark"],
     body[data-theme="summer"][data-color-mode="dark"] {
       --accent: #d8cab2;
@@ -1231,8 +1235,45 @@
       letter-spacing: .08em;
     }
 
+    .debug-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .debug-panel.is-minimized {
+      width: auto;
+      max-width: calc(100vw - 24px);
+      gap: 0;
+      padding: 10px 12px;
+      overflow: visible;
+    }
+
+    .debug-panel.is-minimized .debug-header {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .debug-panel.is-minimized .debug-actions,
+    .debug-panel.is-minimized .debug-content {
+      display: none;
+    }
+
     .debug-actions {
       flex-wrap: wrap;
+    }
+
+    .debug-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 32px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .debug-filter input {
+      accent-color: var(--accent);
     }
 
     .debug-input {
@@ -1244,6 +1285,10 @@
       color: var(--text);
       padding: 0 10px;
       font: inherit;
+    }
+
+    .debug-node-select {
+      flex: 1 1 100%;
     }
 
     .debug-content {
@@ -1308,6 +1353,46 @@
 
     .debug-empty {
       color: var(--muted);
+    }
+
+    .debug-editor {
+      display: grid;
+      gap: 8px;
+    }
+
+    .debug-editor label {
+      display: grid;
+      gap: 4px;
+      color: var(--muted);
+    }
+
+    .debug-editor input,
+    .debug-editor textarea {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      padding: 8px 10px;
+      font: inherit;
+    }
+
+    .debug-editor textarea {
+      min-height: 84px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .debug-editor-grid {
+      display: grid;
+      grid-template-columns: minmax(90px, .4fr) minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .debug-editor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     @media (max-width: 680px) {
@@ -3382,7 +3467,7 @@
     }
   </style>
 </head>
-<body data-mode="launcher" data-home="library" data-theme="neutral" data-color-mode="light" data-ambient="none" data-debug-build="off">
+<body data-mode="launcher" data-home="library" data-theme="neutral" data-color-mode="light" data-ambient="none" data-debug-build="off" data-debug-editor="off">
   <div class="backdrop"></div>
   <div class="grain"></div>
   <div class="vignette"></div>
@@ -3534,13 +3619,24 @@
   <section class="debug-panel is-hidden" id="debugPanel" aria-label="调试模式">
     <div class="debug-header">
       <strong>调试模式</strong>
-      <button class="mini-btn" id="debugCloseBtn" type="button">关闭</button>
+      <div class="debug-header-actions">
+        <button class="mini-btn" id="debugMinimizeBtn" type="button">最小化</button>
+        <button class="mini-btn" id="debugCloseBtn" type="button">关闭</button>
+      </div>
     </div>
     <div class="debug-actions">
-      <input class="debug-input" id="debugNodeInput" type="text" placeholder="输入节点 ID 跳转" spellcheck="false">
+      <input class="debug-input" id="debugNodeInput" type="text" placeholder="输入或选择节点 ID 跳转" list="debugNodeList" spellcheck="false">
+      <datalist id="debugNodeList"></datalist>
+      <label class="debug-filter">
+        <input id="debugFlowToggle" type="checkbox">
+        显示流程节点
+      </label>
       <button class="mini-btn" id="debugJumpBtn" type="button">跳转</button>
       <button class="mini-btn" id="debugRefreshBtn" type="button">刷新</button>
       <button class="mini-btn" id="debugCopyBtn" type="button">复制状态</button>
+      <button class="mini-btn" id="debugEditBtn" type="button" data-debug-editor-control>编辑当前节点</button>
+      <button class="mini-btn" id="debugExportBtn" type="button" data-debug-editor-control>导出测试 JSON</button>
+      <button class="mini-btn" id="debugClearEditsBtn" type="button" data-debug-editor-control>清除测试修改</button>
     </div>
     <div class="debug-content" id="debugContent"></div>
   </section>
@@ -3549,6 +3645,7 @@
     "use strict";
 
     const DEBUG_BUILD_ENABLED = false;
+    const DEBUG_EDITOR_ENABLED = false;
 
     const SAMPLE_STORY = {
       "meta": {
@@ -13989,7 +14086,7 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "Chi Chi 站在楼梯上，九岁，手里攥着一颗玻璃弹珠。你一抬头，他就把弹珠藏到背后，像怕你连这个也会被分走。"
+                              "text": "Chi Chi 站在楼梯上，九岁，手里攥着一颗玻璃弹珠。你一抬头，他就把弹珠藏到背后，像怕你连这个也会分走。"
                         },
                         {
                               "speaker": "Chi Chi",
@@ -19435,6 +19532,8 @@
       keyDecisions: [],
       history: [],
       choiceHistory: [],
+      baseStory: null,
+      hasDebugEdits: false,
       endings: [],
       achievements: [],
       validation: [],
@@ -19449,6 +19548,9 @@
       overlayTimer: null,
       nextNodeTimer: null,
       skipNextChoiceCheckpoint: false,
+      debugEditorOpen: false,
+      debugPanelMinimized: false,
+      debugShowFlowNodes: false,
       decisionTimer: null,
       storageKey: "branch_fiction_launcher"
     };
@@ -19524,11 +19626,17 @@
       toast: document.getElementById("toast"),
       decisionFloat: document.getElementById("decisionFloat"),
       debugPanel: document.getElementById("debugPanel"),
+      debugMinimizeBtn: document.getElementById("debugMinimizeBtn"),
       debugCloseBtn: document.getElementById("debugCloseBtn"),
       debugNodeInput: document.getElementById("debugNodeInput"),
+      debugNodeList: document.getElementById("debugNodeList"),
+      debugFlowToggle: document.getElementById("debugFlowToggle"),
       debugJumpBtn: document.getElementById("debugJumpBtn"),
       debugRefreshBtn: document.getElementById("debugRefreshBtn"),
       debugCopyBtn: document.getElementById("debugCopyBtn"),
+      debugEditBtn: document.getElementById("debugEditBtn"),
+      debugExportBtn: document.getElementById("debugExportBtn"),
+      debugClearEditsBtn: document.getElementById("debugClearEditsBtn"),
       debugContent: document.getElementById("debugContent")
     };
 
@@ -19576,15 +19684,60 @@
       }
     }
 
+    function getDebugStoryOverrideKey(storageKey = state.storageKey) {
+      return `${storageKey}_debug_story_override`;
+    }
+
+    function readDebugStoryOverride(storageKey) {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED) return null;
+      try {
+        const raw = localStorage.getItem(getDebugStoryOverrideKey(storageKey));
+        if (!raw) return null;
+        const story = JSON.parse(raw);
+        assertStory(story);
+        return story;
+      } catch (error) {
+        console.warn("测试剧情副本读取失败，已忽略。", error);
+        safeLocalRemove(getDebugStoryOverrideKey(storageKey), "测试剧情副本");
+        return null;
+      }
+    }
+
+    function saveDebugStoryOverride() {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED || !state.story) return false;
+      const ok = safeLocalSet(getDebugStoryOverrideKey(), JSON.stringify(state.story), "测试剧情副本");
+      if (ok) state.hasDebugEdits = true;
+      return ok;
+    }
+
+    function clearDebugStoryOverride() {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED) return;
+      safeLocalRemove(getDebugStoryOverrideKey(), "测试剧情副本");
+      state.hasDebugEdits = false;
+      if (state.baseStory) {
+        loadStory(deepClone(state.baseStory), { animate: false, cache: false });
+        showToast("测试修改已清除", "已恢复为源 JSON 内容。");
+      }
+    }
+
     function loadStory(json, options = {}) {
       const settings = { animate: true, cache: true, ...options };
       assertStory(json);
-      state.story = json;
       state.storageKey = `branch_story_${slug(json.meta.title)}`;
+      state.baseStory = deepClone(json);
+      const editedStory = readDebugStoryOverride(state.storageKey);
+      if (editedStory) {
+        state.story = editedStory;
+        state.hasDebugEdits = true;
+      } else {
+        state.story = json;
+        state.hasDebugEdits = false;
+      }
+      assertStory(state.story);
       state.currentNodeId = "";
       state.segmentIndex = 0;
-      state.val = clampNumber(json.meta.initialVariable ?? 0, 0, 100);
-      state.vars = deepClone(json.variables || {});
+      state.val = clampNumber(state.story.meta.initialVariable ?? 0, 0, 100);
+      state.vars = deepClone(state.story.variables || {});
       state.flags = [];
       state.flagLabels = {};
       state.keyDecisions = [];
@@ -19593,7 +19746,7 @@
       state.currentSceneKey = "";
       state.endings = readEndings();
       state.achievements = readAchievements();
-      state.validation = validateStory(json);
+      state.validation = validateStory(state.story);
       state.checkpoints = readCheckpoints();
 
       applyTheme("neutral");
@@ -20991,6 +21144,11 @@
       document.documentElement.style.setProperty("--story-font-scale", state.settings.fontScale);
       el.body.dataset.motion = state.settings.motion || "full";
       el.body.dataset.debugBuild = DEBUG_BUILD_ENABLED ? "on" : "off";
+      el.body.dataset.debugEditor = DEBUG_EDITOR_ENABLED ? "on" : "off";
+      if (!DEBUG_EDITOR_ENABLED) {
+        state.debugEditorOpen = false;
+        state.hasDebugEdits = false;
+      }
       const colorMode = state.settings.colorMode === "dark" ? "dark" : "light";
       state.settings.colorMode = colorMode;
       el.body.dataset.colorMode = colorMode;
@@ -21027,6 +21185,7 @@
       el.body.dataset.debug = active ? "on" : "off";
       el.debugPanel.classList.toggle("is-hidden", !active);
       el.debugToggleBtn.textContent = active ? "关闭调试" : "调试模式";
+      syncDebugPanelMinimized();
       if (active) updateDebugPanel();
     }
 
@@ -21043,6 +21202,22 @@
     function toggleDebugMode() {
       if (!DEBUG_BUILD_ENABLED) return;
       setDebugMode(!(state.settings.debugMode === true || state.settings.debugMode === "true"));
+    }
+
+    function syncDebugPanelMinimized() {
+      if (!el.debugPanel) return;
+      el.debugPanel.classList.toggle("is-minimized", state.debugPanelMinimized);
+      if (el.debugMinimizeBtn) {
+        el.debugMinimizeBtn.textContent = state.debugPanelMinimized ? "展开" : "最小化";
+        el.debugMinimizeBtn.setAttribute("aria-pressed", String(state.debugPanelMinimized));
+      }
+    }
+
+    function setDebugPanelMinimized(minimized) {
+      if (!DEBUG_BUILD_ENABLED) return;
+      state.debugPanelMinimized = Boolean(minimized);
+      syncDebugPanelMinimized();
+      updateDebugPanel();
     }
 
     function getDebugConditionLabel(condition) {
@@ -21098,15 +21273,130 @@
       return `<section class="debug-section"><h3>${escapeHtml(title)}</h3>${bodyHtml}</section>`;
     }
 
+    function getDebugNodeType(node) {
+      if (!node) return "未知";
+      if (node.isEnding) return `结局${node.type ? `/${node.type}` : ""}`;
+      if (node.routes?.length) return "route";
+      if (node.choices?.length) return "选择";
+      if (node.next) return "自动";
+      return "普通";
+    }
+
+    function getDebugNodeCategory(id, node) {
+      if (!node) return { label: "未知", flow: true };
+      if (node.isEnding || id.startsWith("ending_")) return { label: "结局", flow: false };
+      if (/_feedback(?:_|$)/.test(id)) return { label: "分支反馈", flow: false };
+      if (/_check(?:_|$)/.test(id)) return { label: "条件检查", flow: true };
+      if (/_logic$/.test(id) || node.routes?.length) return { label: "逻辑判断", flow: true };
+      if (/_router(?:_|$)/.test(id) || /_route(?:_|$)/.test(id)) return { label: "路由入口", flow: true };
+      if (node.choices?.length) return { label: "普通剧情", flow: false };
+      if (node.next) return { label: "自动承接", flow: false };
+      return { label: "普通剧情", flow: false };
+    }
+
+    function getDebugOrderedNodeEntries() {
+      if (!state.story?.nodes) return [];
+      const nodes = state.story.nodes;
+      const seen = new Set();
+      const entries = [];
+      (state.story._devGraph?.layers || []).forEach(layer => {
+        (layer.nodes || []).forEach(id => {
+          if (!seen.has(id) && nodes[id]) {
+            seen.add(id);
+            entries.push([id, nodes[id]]);
+          }
+        });
+      });
+      Object.entries(nodes).forEach(([id, node]) => {
+        if (!seen.has(id)) entries.push([id, node]);
+      });
+      return entries;
+    }
+
+    function getDebugNodeLabel(order, id, node) {
+      const title = node?.title || node?.chapterTitle || "无标题";
+      const progress = node?.progress ?? 0;
+      const category = getDebugNodeCategory(id, node).label;
+      return `${String(order).padStart(3, "0")} · ${id} · ${title} · ${progress}% · ${category}`;
+    }
+
+    function refreshDebugNodeList() {
+      if (!el.debugNodeList || !state.story?.nodes) return;
+      if (el.debugFlowToggle) el.debugFlowToggle.checked = state.debugShowFlowNodes;
+      el.debugNodeList.innerHTML = getDebugOrderedNodeEntries()
+        .map(([id, node], index) => ({ id, node, index: index + 1, category: getDebugNodeCategory(id, node) }))
+        .filter(item => state.debugShowFlowNodes || !item.category.flow)
+        .map(item => `<option value="${escapeHtml(item.id)}" label="${escapeHtml(getDebugNodeLabel(item.index, item.id, item.node))}"></option>`)
+        .join("");
+    }
+
+    function makeDebugEditor(nodeId, node) {
+      if (!node) return `<div class="debug-empty">当前没有可编辑节点。</div>`;
+      const segments = (node.segments || []).map((segment, index) => {
+        const data = typeof segment === "string" ? { speaker: "", text: segment } : segment;
+        return `
+          <div class="debug-editor-grid" data-edit-segment="${index}">
+            <label>段落 ${index + 1} 说话人
+              <input data-edit-segment-speaker="${index}" value="${escapeHtml(data.speaker || "")}">
+            </label>
+            <label>段落 ${index + 1} 文本
+              <textarea data-edit-segment-text="${index}">${escapeHtml(data.text || "")}</textarea>
+            </label>
+          </div>
+        `;
+      }).join("");
+      const choices = (node.choices || []).map((choice, index) => `
+        <label>选项 ${index + 1}
+          <textarea data-edit-choice-text="${index}">${escapeHtml(choice.text || "")}</textarea>
+        </label>
+      `).join("");
+      const endingFields = node.isEnding ? `
+        <label>结局正文
+          <textarea data-edit-ending-description>${escapeHtml(node.description || "")}</textarea>
+        </label>
+        <label>结局收束语
+          <textarea data-edit-ending-closing>${escapeHtml(node.closing || "")}</textarea>
+        </label>
+      ` : "";
+
+      return `
+        <div class="debug-editor" data-edit-node-id="${escapeHtml(nodeId)}">
+          <div class="debug-empty">编辑只保存到本浏览器测试副本，不会写回源 JSON。结构字段 next / routes / condition / changes 暂不开放编辑。</div>
+          <label>标题
+            <input data-edit-title value="${escapeHtml(node.title || "")}">
+          </label>
+          <label>章节标题
+            <input data-edit-chapter-title value="${escapeHtml(node.chapterTitle || "")}">
+          </label>
+          ${segments || `<div class="debug-empty">当前节点没有 segments。</div>`}
+          ${choices || `<div class="debug-empty">当前节点没有 choices。</div>`}
+          ${endingFields}
+          <div class="debug-editor-actions">
+            <button class="mini-btn" type="button" data-debug-save-edit>保存到测试副本</button>
+            <button class="mini-btn" type="button" data-debug-copy-node-patch>复制当前节点修改</button>
+            <button class="mini-btn" type="button" data-debug-close-editor>关闭编辑</button>
+          </div>
+        </div>
+      `;
+    }
+
     function updateDebugPanel() {
       if (!el.debugPanel || el.debugPanel.classList.contains("is-hidden")) return;
       if (!state.story) {
         el.debugContent.innerHTML = makeDebugSection("状态", `<div class="debug-empty">尚未载入剧本。</div>`);
         return;
       }
+      refreshDebugNodeList();
 
       const nodeId = state.currentNodeId || state.story.startNodeId || "";
+      if (el.debugNodeInput) {
+        el.debugNodeInput.placeholder = nodeId ? `当前：${nodeId}，输入或选择节点 ID 跳转` : "输入或选择节点 ID 跳转";
+        if (document.activeElement !== el.debugNodeInput) el.debugNodeInput.value = "";
+      }
+      if (state.debugPanelMinimized) return;
+
       const node = state.story.nodes?.[nodeId] || null;
+      const nodeCategory = getDebugNodeCategory(nodeId, node);
       const devNode = state.story._devGraph?.nodeIndex?.[nodeId] || {};
       const parents = getDebugParents(nodeId);
       const children = normalizeDebugIds(devNode.children || getDebugNextIds(node));
@@ -21124,8 +21414,8 @@
       });
       const important = (state.keyDecisions || []).map(item => `${item.label || item.id} @ ${item.nodeId || ""}`);
       const varsText = JSON.stringify(state.vars || {}, null, 2);
+      const editStatus = DEBUG_EDITOR_ENABLED ? (state.hasDebugEdits ? "当前浏览器有测试副本" : "无") : "编辑模式关闭";
 
-      if (document.activeElement !== el.debugNodeInput) el.debugNodeInput.value = nodeId;
       el.debugContent.innerHTML = [
         makeDebugSection("当前节点", `
           <dl class="debug-kv">
@@ -21134,7 +21424,8 @@
             <dt>场景</dt><dd>${escapeHtml(node ? getSceneDisplayLabel(node) : "")}</dd>
             <dt>进度</dt><dd>${escapeHtml(String(node?.progress ?? devNode.progress ?? 0))}</dd>
             <dt>段落</dt><dd>${escapeHtml(`${state.segmentIndex}/${node?.segments?.length || 0}`)}</dd>
-            <dt>节点类型</dt><dd>${escapeHtml(node?.isEnding ? "结局" : (routes.length ? "route 节点" : (choices.length ? "选择节点" : "普通节点")))}</dd>
+            <dt>节点类型</dt><dd>${escapeHtml(`${nodeCategory.label} / ${getDebugNodeType(node)}`)}</dd>
+            <dt>测试修改</dt><dd>${escapeHtml(editStatus)}</dd>
           </dl>
         `),
         makeDebugSection("图关系", `
@@ -21152,7 +21443,8 @@
           <div>当前 flags</div>${makeDebugPills(state.flags, "没有 flag")}
           <div>关键决定</div>${makeDebugPills(important, "没有关键决定")}
           <pre class="debug-code">${escapeHtml(varsText)}</pre>
-        `)
+        `),
+        state.debugEditorOpen ? makeDebugSection("编辑当前节点", makeDebugEditor(nodeId, node)) : ""
       ].join("");
     }
 
@@ -21168,7 +21460,104 @@
       el.body.dataset.mode = "play";
       closeMenu();
       processNode(nodeId, { fromHistory: true, showChapter: true });
+      if (el.debugNodeInput) {
+        el.debugNodeInput.value = "";
+        el.debugNodeInput.blur();
+      }
       showToast("已跳转节点", nodeId);
+    }
+
+    function setDebugEditorOpen(open) {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED) return;
+      state.debugEditorOpen = Boolean(open);
+      updateDebugPanel();
+    }
+
+    function saveDebugEditorNode() {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED || !state.story) return;
+      const editor = el.debugContent.querySelector("[data-edit-node-id]");
+      const nodeId = editor?.dataset.editNodeId;
+      const node = state.story.nodes?.[nodeId];
+      if (!editor || !node) {
+        showToast("无法保存", "当前没有可编辑节点。");
+        return;
+      }
+
+      node.title = editor.querySelector("[data-edit-title]")?.value || "";
+      const chapterTitle = editor.querySelector("[data-edit-chapter-title]")?.value || "";
+      if (chapterTitle.trim()) node.chapterTitle = chapterTitle;
+      else delete node.chapterTitle;
+
+      (node.segments || []).forEach((segment, index) => {
+        const speaker = editor.querySelector(`[data-edit-segment-speaker="${index}"]`)?.value || "";
+        const text = editor.querySelector(`[data-edit-segment-text="${index}"]`)?.value || "";
+        const target = typeof segment === "string" ? { text } : segment;
+        target.text = text;
+        if (speaker.trim()) target.speaker = speaker;
+        else delete target.speaker;
+        if (typeof segment === "string") {
+          node.segments[index] = target;
+        }
+      });
+
+      (node.choices || []).forEach((choice, index) => {
+        const text = editor.querySelector(`[data-edit-choice-text="${index}"]`)?.value;
+        if (text !== undefined) choice.text = text;
+      });
+
+      const description = editor.querySelector("[data-edit-ending-description]")?.value;
+      const closing = editor.querySelector("[data-edit-ending-closing]")?.value;
+      if (description !== undefined) node.description = description;
+      if (closing !== undefined) node.closing = closing;
+
+      try {
+        assertStory(state.story);
+        state.validation = validateStory(state.story);
+      } catch (error) {
+        showToast("保存失败", error.message);
+        return;
+      }
+
+      if (saveDebugStoryOverride()) {
+        clearReaderSurface();
+        state.segmentIndex = 0;
+        processNode(nodeId, { fromHistory: true, showChapter: false });
+        state.debugEditorOpen = true;
+        updateDebugPanel();
+        showToast("已保存到测试副本", nodeId);
+      }
+    }
+
+    async function copyDebugNodePatch() {
+      if (!DEBUG_EDITOR_ENABLED || !state.story || !state.baseStory) return;
+      const editor = el.debugContent.querySelector("[data-edit-node-id]");
+      const nodeId = editor?.dataset.editNodeId || state.currentNodeId;
+      const payload = {
+        nodeId,
+        before: state.baseStory.nodes?.[nodeId] || null,
+        after: state.story.nodes?.[nodeId] || null
+      };
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+        showToast("当前节点修改已复制", nodeId);
+      } catch {
+        showToast("复制失败", "浏览器没有开放剪贴板权限。");
+      }
+    }
+
+    function exportDebugStoryJson() {
+      if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED || !state.story) return;
+      const json = JSON.stringify(state.story, null, 2);
+      const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+      const link = document.createElement("a");
+      const version = state.story.meta?.version || "debug";
+      link.href = URL.createObjectURL(blob);
+      link.download = `santalucia-sonnyboy-${version}-debug.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      showToast("已导出测试 JSON", link.download);
     }
 
     async function copyDebugSnapshot() {
@@ -21947,14 +22336,42 @@
       toggleDebugMode();
     });
     el.debugCloseBtn?.addEventListener("click", () => setDebugMode(false));
+    el.debugMinimizeBtn?.addEventListener("click", () => setDebugPanelMinimized(!state.debugPanelMinimized));
     el.debugRefreshBtn?.addEventListener("click", updateDebugPanel);
     el.debugJumpBtn?.addEventListener("click", jumpToDebugNode);
+    el.debugNodeInput?.addEventListener("focus", () => {
+      el.debugNodeInput.value = "";
+      refreshDebugNodeList();
+    });
+    el.debugFlowToggle?.addEventListener("change", () => {
+      state.debugShowFlowNodes = el.debugFlowToggle.checked;
+      refreshDebugNodeList();
+      showToast(state.debugShowFlowNodes ? "已显示流程节点" : "已隐藏流程节点", "下拉列表已更新。");
+    });
+    el.debugNodeInput?.addEventListener("change", () => {
+      if (state.story?.nodes?.[el.debugNodeInput.value.trim()]) jumpToDebugNode();
+    });
     el.debugNodeInput?.addEventListener("keydown", event => {
       if (event.key !== "Enter") return;
       event.preventDefault();
       jumpToDebugNode();
     });
     el.debugCopyBtn?.addEventListener("click", copyDebugSnapshot);
+    el.debugEditBtn?.addEventListener("click", () => setDebugEditorOpen(!state.debugEditorOpen));
+    el.debugExportBtn?.addEventListener("click", exportDebugStoryJson);
+    el.debugClearEditsBtn?.addEventListener("click", clearDebugStoryOverride);
+    el.debugContent?.addEventListener("click", event => {
+      if (event.target.closest("[data-debug-save-edit]")) {
+        event.preventDefault();
+        saveDebugEditorNode();
+      } else if (event.target.closest("[data-debug-copy-node-patch]")) {
+        event.preventDefault();
+        copyDebugNodePatch();
+      } else if (event.target.closest("[data-debug-close-editor]")) {
+        event.preventDefault();
+        setDebugEditorOpen(false);
+      }
+    });
     el.menuChaptersBtn.addEventListener("click", renderMenuChapterSelect);
     el.menuChapterList.addEventListener("click", event => {
       const button = event.target.closest("button[data-action='load-checkpoint']");
