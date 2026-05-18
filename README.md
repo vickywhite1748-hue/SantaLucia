@@ -28,6 +28,8 @@ https://vickywhite1748-hue.github.io/SantaLucia/test/
 - `test/access.js`：入口页和真实测试页共用的门禁脚本
 - `test/play.html`：真实测试游戏页，仅在开放时段部署
 
+测试人员使用说明见 [docs/public-test-guide.md](docs/public-test-guide.md)。
+
 ## 玩法说明
 
 这不是单线阅读，而是分支剧情。你的选择会影响：
