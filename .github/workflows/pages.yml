@@ -84,11 +84,36 @@ jobs:
             auto) include_test="$is_time_open" ;;
           esac
 
-          if [[ "$include_test" == "true" && -f test/index.html ]]; then
-            cp -R test _site/test
-            echo "Test page included. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS"
+          mkdir -p _site/test
+          build_time="$(TZ=Asia/Hong_Kong date +%Y-%m-%dT%H:%M:%S%z)"
+          export TEST_BUILD_TIME="$build_time"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          replacements = {
+              "__TEST_ACCESS__": os.environ.get("TEST_ACCESS", "auto"),
+              "__TEST_OPEN_WINDOWS_HK__": os.environ.get("TEST_OPEN_WINDOWS_HK", ""),
+              "__TEST_BUILD_TIME__": os.environ.get("TEST_BUILD_TIME", ""),
+          }
+
+          for relative in ("test/index.html", "test/access.js"):
+              source = Path(relative)
+              if not source.exists():
+                  raise SystemExit(f"Missing required test gate file: {source}")
+              text = source.read_text(encoding="utf-8")
+              for needle, value in replacements.items():
+                  text = text.replace(needle, value)
+              target = Path("_site") / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_text(text, encoding="utf-8", newline="\n")
+          PY
+
+          if [[ "$include_test" == "true" && -f test/play.html ]]; then
+            cp test/play.html _site/test/play.html
+            echo "Test play page included. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS build=$build_time"
           else
-            echo "Test page excluded. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS"
+            echo "Test gate only. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS build=$build_time"
           fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
