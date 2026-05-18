@@ -20,7 +20,13 @@ https://vickywhite1748-hue.github.io/SantaLucia/
 
 https://vickywhite1748-hue.github.io/SantaLucia/test/
 
-测试版仅在约定测试时段开放，用于检查新交互和调试剧情流程；正式版长期开放。
+测试版仅在约定测试时段开放，用于检查新交互和调试剧情流程；正式版长期开放。测试入口由香港时间门禁控制，入口页会按开放时段跳转到真实测试页，非开放时段会显示关闭提示。
+
+测试版部署结构：
+
+- `test/index.html`：测试入口门禁页
+- `test/access.js`：入口页和真实测试页共用的门禁脚本
+- `test/play.html`：真实测试游戏页，仅在开放时段部署
 
 ## 玩法说明
 
