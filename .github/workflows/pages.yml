@@ -4,6 +4,18 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      test_access:
+        description: "Test page access for this deployment"
+        required: true
+        default: "auto"
+        type: choice
+        options:
+          - auto
+          - open
+          - closed
+  schedule:
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: read
@@ -23,12 +35,67 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build Pages artifact
+        shell: bash
+        env:
+          TEST_ACCESS: ${{ github.event.inputs.test_access || 'auto' }}
+          TEST_OPEN_WINDOWS_HK: ${{ vars.TEST_OPEN_WINDOWS_HK }}
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+
+          shopt -s dotglob
+          for item in *; do
+            case "$item" in
+              .git|.github|test|_site)
+                ;;
+              *)
+                cp -R "$item" _site/
+                ;;
+            esac
+          done
+
+          is_time_open=false
+          now="$(TZ=Asia/Hong_Kong date +%H:%M)"
+          IFS=',' read -ra windows <<< "${TEST_OPEN_WINDOWS_HK:-}"
+          for window in "${windows[@]}"; do
+            window="$(echo "$window" | xargs)"
+            [[ -z "$window" ]] && continue
+            start="${window%-*}"
+            end="${window#*-}"
+            if [[ "$start" == "$end" ]]; then
+              continue
+            elif [[ "$start" < "$end" ]]; then
+              if [[ "$now" > "$start" && "$now" < "$end" || "$now" == "$start" ]]; then
+                is_time_open=true
+              fi
+            else
+              if [[ "$now" > "$start" || "$now" < "$end" || "$now" == "$start" ]]; then
+                is_time_open=true
+              fi
+            fi
+          done
+
+          include_test=false
+          case "$TEST_ACCESS" in
+            open) include_test=true ;;
+            closed) include_test=false ;;
+            auto) include_test="$is_time_open" ;;
+          esac
+
+          if [[ "$include_test" == "true" && -f test/index.html ]]; then
+            cp -R test _site/test
+            echo "Test page included. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS"
+          else
+            echo "Test page excluded. now=$now windows=${TEST_OPEN_WINDOWS_HK:-unset} mode=$TEST_ACCESS"
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

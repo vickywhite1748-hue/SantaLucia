@@ -16,6 +16,12 @@ https://vickywhite1748-hue.github.io/SantaLucia/
 
 打开网页即可游玩，无需安装。
 
+测试版入口：
+
+https://vickywhite1748-hue.github.io/SantaLucia/test/
+
+测试版仅在约定测试时段开放，用于检查新交互和调试剧情流程；正式版长期开放。
+
 ## 玩法说明
 
 这不是单线阅读，而是分支剧情。你的选择会影响：
