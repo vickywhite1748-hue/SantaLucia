@@ -78,11 +78,16 @@ jobs:
           done
 
           include_test=false
+          force_open_until_hk="2026-05-20T00:00"
+          now_full="$(TZ=Asia/Hong_Kong date +%Y-%m-%dT%H:%M)"
           case "$TEST_ACCESS" in
             open) include_test=true ;;
             closed) include_test=false ;;
             auto) include_test="$is_time_open" ;;
           esac
+          if [[ "$TEST_ACCESS" != "closed" && "$now_full" < "$force_open_until_hk" ]]; then
+            include_test=true
+          fi
 
           mkdir -p _site/test
           build_time="$(TZ=Asia/Hong_Kong date +%Y-%m-%dT%H:%M:%S%z)"

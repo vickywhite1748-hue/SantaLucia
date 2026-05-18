@@ -5,6 +5,7 @@
     accessMode: "__TEST_ACCESS__",
     windows: "__TEST_OPEN_WINDOWS_HK__",
     buildTime: "__TEST_BUILD_TIME__",
+    openUntilHk: "2026-05-20 00:00:00",
     playHref: "play.html"
   };
 
@@ -63,17 +64,21 @@
     const windows = parseWindows(CONFIG.windows);
     const hk = getHongKongTime();
     const openByWindow = windows.some((window) => isInsideWindow(hk.time, window));
+    const openUntilHk = cleanTemplateValue(CONFIG.openUntilHk);
+    const openByDeadline = Boolean(openUntilHk && hk.full < openUntilHk);
     let open = false;
 
     if (mode === "closed") {
       open = false;
+    } else if (openByDeadline) {
+      open = true;
     } else if (windows.length) {
       open = openByWindow;
     } else {
       open = mode === "open";
     }
 
-    return { mode, windows, hk, open };
+    return { mode, windows, hk, open, openUntilHk };
   }
 
   function updateEntryPage(state) {
@@ -86,7 +91,7 @@
     const refreshButton = document.getElementById("testRefreshButton");
 
     if (now) now.textContent = state.hk.full;
-    if (windows) windows.textContent = state.windows.length ? state.windows.map((item) => item.label).join(", ") : "\u672a\u914d\u7f6e";
+    if (windows) windows.textContent = state.openUntilHk ? `开放至 ${state.openUntilHk}` : (state.windows.length ? state.windows.map((item) => item.label).join(", ") : "\u672a\u914d\u7f6e");
     if (mode) mode.textContent = `${state.mode}${cleanTemplateValue(CONFIG.buildTime) ? ` | ${cleanTemplateValue(CONFIG.buildTime)}` : ""}`;
 
     if (state.open) {
