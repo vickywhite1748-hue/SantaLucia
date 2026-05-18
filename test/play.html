@@ -914,6 +914,25 @@
       letter-spacing: .04em;
     }
 
+    .release-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-left: 8px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .release-link:hover {
+      color: var(--text);
+    }
+
     .story-home {
       display: none;
       margin-top: 0;
@@ -966,6 +985,105 @@
       gap: 10px;
       align-items: center;
       margin-bottom: 20px;
+    }
+
+    .release-notice {
+      display: none;
+      max-width: 620px;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-solid) 88%, transparent);
+      box-shadow: 0 14px 40px var(--shadow);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .release-notice.is-visible {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .release-notice strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .release-notice-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .release-panel {
+      position: fixed;
+      right: clamp(16px, 4vw, 36px);
+      bottom: clamp(18px, 5vw, 42px);
+      z-index: 58;
+      display: none;
+      width: min(420px, calc(100vw - 32px));
+      max-height: min(60vh, 560px);
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--panel-solid);
+      box-shadow: 0 24px 80px var(--shadow);
+      color: var(--text);
+      overflow: auto;
+    }
+
+    .release-panel.is-visible {
+      display: block;
+    }
+
+    .release-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .release-panel h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .release-note {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .release-note:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .release-note h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .release-note time {
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .release-note ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     .record-panel {
@@ -3559,6 +3677,16 @@
           </div>
 
           <div class="story-home" id="storyHome">
+            <div class="release-notice" id="releaseNotice" hidden>
+              <div>
+                <strong id="releaseNoticeTitle">版本已更新</strong>
+                <span id="releaseNoticeCopy">查看本次剧情和体验调整。</span>
+              </div>
+              <div class="release-notice-actions">
+                <button class="mini-btn" id="releaseNoticeOpenBtn" type="button">查看</button>
+                <button class="mini-btn" id="releaseNoticeCloseBtn" type="button">关闭</button>
+              </div>
+            </div>
             <div class="home-actions">
               <button class="text-btn primary" id="continueBtn" hidden>继续</button>
               <button class="text-btn primary" id="startBtn" hidden>开始新故事</button>
@@ -3592,6 +3720,14 @@
     <div class="scene-card-kicker">SCENE</div>
     <h2 class="scene-card-title" id="sceneTitle"></h2>
     <p class="scene-card-copy" id="sceneCopy"></p>
+  </section>
+
+  <section class="release-panel" id="releasePanel" aria-label="版本更新记录" aria-hidden="true">
+    <div class="release-panel-header">
+      <h2>版本更新</h2>
+      <button class="mini-btn" id="releasePanelCloseBtn" type="button">关闭</button>
+    </div>
+    <div id="releasePanelBody"></div>
   </section>
 
   <section class="menu-panel is-hidden" id="menuPanel" aria-hidden="true">
@@ -3660,6 +3796,25 @@
                   "tagline": "传记不是写仁慈，而是写开枪以前，你先学会了看别人脸色。",
                   "credit": "FROM @真理追赶交替"
             },
+            "releaseNotes": [
+                  {
+                        "version": "0.1.4",
+                        "date": "2026-05-18",
+                        "items": [
+                              "修正文本文字与分支逻辑。",
+                              "暗线提前知情路线不再把 Sonnyboy 写成通过报纸得知 Chi Chi 出事。",
+                              "调整相关结局、成就和后续对话，使这条路线更符合留下暗线后提前收到消息的因果。"
+                        ]
+                  },
+                  {
+                        "version": "0.1.3",
+                        "date": "2026-05-18",
+                        "items": [
+                              "修复选项被底部进度条遮挡的问题。",
+                              "选项出现时会自动滚入可见区域，移动端和桌面阅读更顺畅。"
+                        ]
+                  }
+            ],
             "variableName": "墨迹",
             "initialVariable": 40
       },
@@ -19582,6 +19737,14 @@
       homeSettingsBtn: document.getElementById("homeSettingsBtn"),
       ejectBtn: document.getElementById("ejectBtn"),
       clearHomeBtn: document.getElementById("clearHomeBtn"),
+      releaseNotice: document.getElementById("releaseNotice"),
+      releaseNoticeTitle: document.getElementById("releaseNoticeTitle"),
+      releaseNoticeCopy: document.getElementById("releaseNoticeCopy"),
+      releaseNoticeOpenBtn: document.getElementById("releaseNoticeOpenBtn"),
+      releaseNoticeCloseBtn: document.getElementById("releaseNoticeCloseBtn"),
+      releasePanel: document.getElementById("releasePanel"),
+      releasePanelBody: document.getElementById("releasePanelBody"),
+      releasePanelCloseBtn: document.getElementById("releasePanelCloseBtn"),
       storyHome: document.getElementById("storyHome"),
       homeCover: document.getElementById("homeCover"),
       coverLabel: document.getElementById("coverLabel"),
@@ -19782,8 +19945,11 @@
       const meta = state.story.meta;
       const cover = meta.cover || {};
       const author = meta.author || "佚名";
+      const releaseButton = getReleaseNotes().length
+        ? ` <button class="release-link" type="button" data-release-open>更新记录</button>`
+        : "";
       el.loadedTitle.textContent = meta.title;
-      el.loadedMeta.innerHTML = `${escapeHtml(author)} <span class="powered-inline">Powered By: @山音</span> · v${escapeHtml(meta.version || "1")} · ${Object.keys(state.story.nodes).length} 个节点`;
+      el.loadedMeta.innerHTML = `${escapeHtml(author)} <span class="powered-inline">Powered By: @山音</span> · v${escapeHtml(meta.version || "1")} · ${Object.keys(state.story.nodes).length} 个节点${releaseButton}`;
       el.loadedCard.classList.add("is-visible");
       el.coverLabel.textContent = cover.label || "STORY VOLUME";
       el.coverTitle.textContent = meta.title;
@@ -19797,6 +19963,7 @@
       el.storyTitleLine.textContent = meta.title;
       el.variableName.textContent = meta.variableName || "状态值";
       renderHomeRecords("none");
+      updateReleaseNotice();
     }
 
     function checkContinue() {
@@ -19805,8 +19972,78 @@
       el.restartHomeBtn.hidden = !save;
     }
 
+    function getReleaseNotes() {
+      const notes = state.story?.meta?.releaseNotes;
+      return Array.isArray(notes) ? notes.filter(note => note?.version && Array.isArray(note.items) && note.items.length) : [];
+    }
+
+    function getReleaseDismissKey() {
+      const version = state.story?.meta?.version || "unknown";
+      return `${state.storageKey}_release_${version}_dismissed`;
+    }
+
+    function isReleaseNoticeDismissed() {
+      try {
+        return localStorage.getItem(getReleaseDismissKey()) === "true";
+      } catch {
+        return false;
+      }
+    }
+
+    function dismissReleaseNotice() {
+      if (state.story) safeLocalSet(getReleaseDismissKey(), "true", "版本更新提示");
+      el.releaseNotice?.classList.remove("is-visible");
+      if (el.releaseNotice) el.releaseNotice.hidden = true;
+    }
+
+    function updateReleaseNotice() {
+      const notes = getReleaseNotes();
+      if (!el.releaseNotice || !notes.length || isReleaseNoticeDismissed()) {
+        if (el.releaseNotice) {
+          el.releaseNotice.classList.remove("is-visible");
+          el.releaseNotice.hidden = true;
+        }
+        return;
+      }
+      const latest = notes[0];
+      if (el.releaseNoticeTitle) el.releaseNoticeTitle.textContent = `v${latest.version} 有更新`;
+      if (el.releaseNoticeCopy) el.releaseNoticeCopy.textContent = "查看本次剧情和体验调整。";
+      el.releaseNotice.hidden = false;
+      el.releaseNotice.classList.add("is-visible");
+    }
+
+    function renderReleasePanel() {
+      if (!el.releasePanelBody) return false;
+      const notes = getReleaseNotes().slice(0, 3);
+      if (!notes.length) {
+        el.releasePanelBody.innerHTML = `<div class="debug-empty">暂无更新记录。</div>`;
+        return false;
+      }
+      el.releasePanelBody.innerHTML = notes.map(note => `
+        <article class="release-note">
+          <h3>v${escapeHtml(note.version)}${note.date ? ` <time>${escapeHtml(note.date)}</time>` : ""}</h3>
+          <ul>${note.items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </article>
+      `).join("");
+      return true;
+    }
+
+    function openReleasePanel(options = {}) {
+      if (!renderReleasePanel() || !el.releasePanel) return;
+      el.releasePanel.classList.add("is-visible");
+      el.releasePanel.setAttribute("aria-hidden", "false");
+      if (options.dismissNotice) dismissReleaseNotice();
+    }
+
+    function closeReleasePanel() {
+      if (!el.releasePanel) return;
+      el.releasePanel.classList.remove("is-visible");
+      el.releasePanel.setAttribute("aria-hidden", "true");
+    }
+
     function startGame(fromSave = false) {
       if (!state.story) return;
+      closeReleasePanel();
       el.body.classList.remove("ending-reading");
       clearReaderSurface();
       if (fromSave) {
@@ -20692,6 +20929,7 @@
       el.launcher.classList.remove("is-hidden");
       checkContinue();
       renderHomeRecords("none");
+      updateReleaseNotice();
     }
 
     function recordEnding(node) {
@@ -22015,6 +22253,11 @@
 
     function ejectStory() {
       clearTimeout(state.autoplayTimer);
+      closeReleasePanel();
+      if (el.releaseNotice) {
+        el.releaseNotice.classList.remove("is-visible");
+        el.releaseNotice.hidden = true;
+      }
       playMediaTransition("eject");
       setTimeout(() => {
       state.story = null;
@@ -22335,8 +22578,21 @@
     el.homeChaptersBtn.addEventListener("click", () => renderHomeRecords("chapters"));
     el.homeSavesBtn.addEventListener("click", () => renderHomeRecords("saves"));
     el.homeSettingsBtn.addEventListener("click", () => renderHomeRecords("settings"));
+    el.releaseNoticeOpenBtn?.addEventListener("click", () => openReleasePanel({ dismissNotice: true }));
+    el.releaseNoticeCloseBtn?.addEventListener("click", dismissReleaseNotice);
+    el.releasePanelCloseBtn?.addEventListener("click", closeReleasePanel);
     el.ejectBtn.addEventListener("click", ejectStory);
     el.clearHomeBtn.addEventListener("click", clearMemory);
+    document.addEventListener("click", event => {
+      if (event.target.closest("[data-release-open]")) {
+        event.preventDefault();
+        openReleasePanel({ dismissNotice: true });
+        return;
+      }
+      if (!el.releasePanel?.classList.contains("is-visible")) return;
+      if (event.target.closest(".release-panel, .release-notice")) return;
+      closeReleasePanel();
+    });
     el.recordList.addEventListener("click", event => {
       const button = event.target.closest("button[data-action]");
       if (!button) return;
@@ -22446,7 +22702,8 @@
       if (event.defaultPrevented) return;
       if (isEditableElement(event.target)) return;
       if (event.key === "Escape") {
-        if (!el.menuPanel.classList.contains("is-hidden")) closeMenu();
+        if (el.releasePanel?.classList.contains("is-visible")) closeReleasePanel();
+        else if (!el.menuPanel.classList.contains("is-hidden")) closeMenu();
         else if (state.story && el.body.dataset.mode === "play") openMenu();
       }
       if (event.key === " " || event.key === "Enter") {
