@@ -409,6 +409,98 @@
       color: var(--text);
     }
 
+    .feedback-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 88;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 28px);
+      background: rgba(10,10,10,.58);
+      backdrop-filter: blur(12px);
+    }
+
+    .feedback-panel.is-visible {
+      display: flex;
+    }
+
+    .feedback-inner {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 12px;
+      width: min(920px, 100%);
+      height: min(820px, calc(100svh - 32px));
+      border: 1px solid var(--line);
+      background: var(--panel-solid);
+      box-shadow: 0 24px 90px var(--shadow);
+      padding: 14px;
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .feedback-header h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: .12em;
+    }
+
+    .feedback-help {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feedback-context {
+      width: 100%;
+      min-height: 82px;
+      max-height: 128px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 74%, transparent);
+      color: var(--soft);
+      padding: 10px;
+      resize: vertical;
+      font: 12px/1.55 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+
+    .feedback-context.is-hidden {
+      display: none;
+    }
+
+    .feedback-frame-wrap {
+      --feedback-frame-scale: .88;
+      min-height: 0;
+      border: 1px solid var(--line);
+      background: #fff;
+      overflow: auto;
+    }
+
+    .feedback-frame {
+      display: block;
+      width: calc(100% / var(--feedback-frame-scale));
+      height: calc(100% / var(--feedback-frame-scale));
+      min-height: 650px;
+      border: 0;
+      background: #fff;
+      transform: scale(var(--feedback-frame-scale));
+      transform-origin: top left;
+    }
+
     .meter-track,
     .progress-track {
       overflow: hidden;
@@ -1547,6 +1639,26 @@
         left: 12px;
         right: 12px;
         width: auto;
+      }
+
+      .feedback-panel {
+        padding: 0;
+      }
+
+      .feedback-inner {
+        width: 100%;
+        height: 100svh;
+        border-left: 0;
+        border-right: 0;
+        padding: 12px;
+      }
+
+      .feedback-context {
+        max-height: 96px;
+      }
+
+      .feedback-frame-wrap {
+        --feedback-frame-scale: .82;
       }
 
     }
@@ -3783,6 +3895,28 @@
 
   <div class="toast" id="toast" aria-live="polite"></div>
   <div class="decision-float" id="decisionFloat" aria-live="polite">重要决定已记录</div>
+
+  <section class="feedback-panel" id="feedbackPanel" aria-label="反馈" aria-hidden="true">
+    <div class="feedback-inner">
+      <div class="feedback-header">
+        <h2>反馈</h2>
+        <button class="mini-btn" id="feedbackCloseBtn" type="button">关闭</button>
+      </div>
+      <div class="feedback-help">
+        <div>当前节点信息会自动复制。请在问卷的“自动反馈信息”里粘贴，再补充你的问题描述。</div>
+        <div class="feedback-actions">
+          <button class="mini-btn" id="feedbackCopyBtn" type="button">复制自动信息</button>
+          <button class="mini-btn" id="feedbackToggleContextBtn" type="button">显示自动信息</button>
+          <button class="mini-btn" id="feedbackOpenBtn" type="button">新窗口打开问卷</button>
+        </div>
+        <textarea class="feedback-context is-hidden" id="feedbackContextText" readonly></textarea>
+      </div>
+      <div class="feedback-frame-wrap">
+        <iframe class="feedback-frame" id="feedbackFrame" title="腾讯问卷反馈" src="https://wj.qq.com/s2/26727799/bfe8/" allowfullscreen sandbox="allow-same-origin allow-scripts allow-modals allow-downloads allow-forms allow-popups"></iframe>
+      </div>
+    </div>
+  </section>
+
   <section class="debug-panel is-hidden" id="debugPanel" aria-label="调试模式">
     <div class="debug-header">
       <strong>调试模式</strong>
@@ -3814,13 +3948,13 @@
     const DEBUG_BUILD_ENABLED = false;
     const DEBUG_EDITOR_ENABLED = false;
     const BUILD_CHANNEL = "public";
-    const FEEDBACK_URL = "https://github.com/vickywhite1748-hue/SantaLucia/issues/new";
+    const FEEDBACK_FORM_URL = "https://wj.qq.com/s2/26727799/bfe8/";
 
     const SAMPLE_STORY = {
       "meta": {
             "title": "桑塔露琪亚：离家的人",
             "author": "Codex 改写生成",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "description": "Sonnyboy 主视角真分支重构版。正史以 Gambino 谈判退场、离家、读 Stevie 报纸才得知 Chi Chi 出事为默认主线；偏离路线独立承接，不再混用固定剧情。",
             "ambient": "rain",
             "cover": {
@@ -3829,6 +3963,15 @@
                   "credit": "FROM @真理追赶交替"
             },
             "releaseNotes": [
+                  {
+                        "version": "0.1.5",
+                        "date": "2026-05-19",
+                        "items": [
+                              "反馈入口改为页内弹窗，玩家可以在游戏页面内填写腾讯问卷。",
+                              "反馈会自动带上版本、页面来源、当前节点和进度，自动信息默认隐藏，需要时可展开查看或复制。",
+                              "公开版、对外测试版和本地测试版都保留常驻反馈入口，便于反馈页面显示、选项点击和剧情流程问题。"
+                        ]
+                  },
                   {
                         "version": "0.1.4",
                         "date": "2026-05-18",
@@ -3863,13 +4006,13 @@
             "graphKind": "dag",
             "entry": "s01_street_found",
             "generatedFrom": {
-                  "storyVersion": "0.1.4",
-                  "nodeCount": 229,
-                  "edgeCount": 342,
-                  "reachableCount": 229,
+                  "storyVersion": "0.1.5",
+                  "nodeCount": 230,
+                  "edgeCount": 343,
+                  "reachableCount": 230,
                   "cycleCount": 0,
                   "routeHubCount": 16,
-                  "mergeCount": 74
+                  "mergeCount": 75
             },
             "layers": [
                   {
@@ -19823,6 +19966,13 @@
       toast: document.getElementById("toast"),
       decisionFloat: document.getElementById("decisionFloat"),
       feedbackBtn: document.getElementById("feedbackBtn"),
+      feedbackPanel: document.getElementById("feedbackPanel"),
+      feedbackCloseBtn: document.getElementById("feedbackCloseBtn"),
+      feedbackCopyBtn: document.getElementById("feedbackCopyBtn"),
+      feedbackToggleContextBtn: document.getElementById("feedbackToggleContextBtn"),
+      feedbackOpenBtn: document.getElementById("feedbackOpenBtn"),
+      feedbackContextText: document.getElementById("feedbackContextText"),
+      feedbackFrame: document.getElementById("feedbackFrame"),
       debugPanel: document.getElementById("debugPanel"),
       debugMinimizeBtn: document.getElementById("debugMinimizeBtn"),
       debugCloseBtn: document.getElementById("debugCloseBtn"),
@@ -19886,13 +20036,17 @@
       return `${storageKey}_debug_story_override`;
     }
 
-    function readDebugStoryOverride(storageKey) {
+    function readDebugStoryOverride(storageKey, baseStory = null) {
       if (!DEBUG_BUILD_ENABLED || !DEBUG_EDITOR_ENABLED) return null;
       try {
         const raw = localStorage.getItem(getDebugStoryOverrideKey(storageKey));
         if (!raw) return null;
         const story = JSON.parse(raw);
         assertStory(story);
+        if (baseStory?.meta?.version && story.meta?.version !== baseStory.meta.version) {
+          safeLocalRemove(getDebugStoryOverrideKey(storageKey), "过期测试剧情副本");
+          return null;
+        }
         return story;
       } catch (error) {
         console.warn("测试剧情副本读取失败，已忽略。", error);
@@ -19926,7 +20080,7 @@
       assertStory(json);
       state.storageKey = `branch_story_${slug(json.meta.title)}`;
       state.baseStory = deepClone(json);
-      const editedStory = readDebugStoryOverride(state.storageKey);
+      const editedStory = readDebugStoryOverride(state.storageKey, json);
       if (editedStory) {
         state.story = editedStory;
         state.hasDebugEdits = true;
@@ -22359,10 +22513,7 @@
     }
 
     function buildFeedbackBody(context) {
-      return [
-        "请在这里描述你遇到的问题：",
-        "",
-        "---",
+      const lines = [
         `版本：${context.storyVersion || "未载入"}`,
         `页面：${context.channelLabel}`,
         `作品：${context.storyTitle || "未载入"}`,
@@ -22370,46 +22521,103 @@
         `标题：${context.nodeTitle || "无"}`,
         `进度：${context.progress ?? "无"}`,
         `段落：${context.segmentIndex}`,
-        `页面地址：${context.url}`,
-        `调试模式：${context.debugMode ? "开启" : "关闭"}`,
-        `编辑模式：${context.editorMode ? "开启" : "关闭"}`,
-        "",
-        "测试信息：",
-        "```json",
-        JSON.stringify(context, null, 2),
-        "```"
-      ].join("\n");
+        `页面地址：${context.url}`
+      ];
+
+      if (context.channel !== "public") {
+        lines.push(
+          `调试模式：${context.debugMode ? "开启" : "关闭"}`,
+          `编辑模式：${context.editorMode ? "开启" : "关闭"}`,
+          `变量值：${context.val ?? "无"}`,
+          `Flags：${context.flags?.length ? context.flags.join(", ") : "无"}`,
+          `可见选项：${context.visibleChoices?.length ? context.visibleChoices.map(choice => `${choice.text} -> ${choice.next}`).join(" / ") : "无"}`
+        );
+      }
+
+      if (context.channel === "local") {
+        lines.push(
+          "",
+          "完整调试信息：",
+          "```json",
+          JSON.stringify(context, null, 2),
+          "```"
+        );
+      }
+
+      return lines.join("\n");
     }
 
-    async function copyFeedbackContext(body) {
+    function setFeedbackContextText(body) {
+      if (el.feedbackContextText) {
+        el.feedbackContextText.value = body;
+      }
+    }
+
+    function revealFeedbackContext(body) {
+      setFeedbackContextText(body);
+      if (!el.feedbackContextText) return;
+      el.feedbackContextText.classList.remove("is-hidden");
+      if (el.feedbackToggleContextBtn) {
+        el.feedbackToggleContextBtn.textContent = "隐藏自动信息";
+      }
+      el.feedbackContextText.focus();
+      el.feedbackContextText.select();
+    }
+
+    async function copyFeedbackContext(body, options = {}) {
+      setFeedbackContextText(body);
+      if (options.reveal) revealFeedbackContext(body);
       try {
         await navigator.clipboard.writeText(body);
-        showToast("反馈信息已复制", "请把复制内容粘贴给维护者。");
+        showToast("反馈信息已复制", "请粘贴到问卷的“自动反馈信息”。");
       } catch {
-        showToast("无法打开反馈页", "浏览器拦截了新窗口，也没有开放剪贴板权限。");
+        revealFeedbackContext(body);
+        showToast("请手动复制", "浏览器没有开放剪贴板权限，可从弹窗文本框复制。");
       }
     }
 
     function openFeedback() {
       const context = getCurrentFeedbackContext();
-      const title = `[${context.channelLabel}] ${context.nodeId || context.storyVersion || "未开始"} 反馈`;
       const body = buildFeedbackBody(context);
-      let target = FEEDBACK_URL;
-      try {
-        const url = new URL(FEEDBACK_URL, window.location.href);
-        url.searchParams.set("title", title);
-        url.searchParams.set("body", body);
-        target = url.toString();
-      } catch {
-        target = FEEDBACK_URL;
+      setFeedbackContextText(body);
+      el.feedbackContextText?.classList.add("is-hidden");
+      if (el.feedbackToggleContextBtn) el.feedbackToggleContextBtn.textContent = "显示自动信息";
+      if (el.feedbackFrame && el.feedbackFrame.src !== FEEDBACK_FORM_URL) {
+        el.feedbackFrame.src = FEEDBACK_FORM_URL;
       }
-      const opened = window.open(target, "_blank");
-      if (opened) {
-        opened.opener = null;
-        showToast("反馈页已打开", "当前节点信息已经预填。");
-      } else {
-        copyFeedbackContext(body);
+      if (el.feedbackPanel) {
+        el.feedbackPanel.classList.add("is-visible");
+        el.feedbackPanel.setAttribute("aria-hidden", "false");
       }
+      copyFeedbackContext(body);
+    }
+
+    function closeFeedback() {
+      el.feedbackPanel?.classList.remove("is-visible");
+      el.feedbackPanel?.setAttribute("aria-hidden", "true");
+    }
+
+    function copyCurrentFeedbackContext() {
+      copyFeedbackContext(buildFeedbackBody(getCurrentFeedbackContext()));
+    }
+
+    function toggleFeedbackContext() {
+      if (!el.feedbackContextText) return;
+      const shouldShow = el.feedbackContextText.classList.contains("is-hidden");
+      el.feedbackContextText.classList.toggle("is-hidden", !shouldShow);
+      if (el.feedbackToggleContextBtn) {
+        el.feedbackToggleContextBtn.textContent = shouldShow ? "隐藏自动信息" : "显示自动信息";
+      }
+      if (shouldShow) {
+        setFeedbackContextText(buildFeedbackBody(getCurrentFeedbackContext()));
+        el.feedbackContextText.focus();
+        el.feedbackContextText.select();
+      }
+    }
+
+    function openFeedbackFormWindow() {
+      const opened = window.open(FEEDBACK_FORM_URL, "_blank");
+      if (opened) opened.opener = null;
     }
 
     function showImportantDecision(label = "") {
@@ -22738,6 +22946,13 @@
     });
     document.addEventListener("click", handlePageClick);
     el.feedbackBtn?.addEventListener("click", openFeedback);
+    el.feedbackCloseBtn?.addEventListener("click", closeFeedback);
+    el.feedbackCopyBtn?.addEventListener("click", copyCurrentFeedbackContext);
+    el.feedbackToggleContextBtn?.addEventListener("click", toggleFeedbackContext);
+    el.feedbackOpenBtn?.addEventListener("click", openFeedbackFormWindow);
+    el.feedbackPanel?.addEventListener("click", event => {
+      if (event.target === el.feedbackPanel) closeFeedback();
+    });
     el.backBtn.addEventListener("click", goBack);
     el.menuBtn.addEventListener("click", openMenu);
     el.menuPanel.addEventListener("click", event => {
@@ -22822,7 +23037,8 @@
       if (event.defaultPrevented) return;
       if (isEditableElement(event.target)) return;
       if (event.key === "Escape") {
-        if (el.releasePanel?.classList.contains("is-visible")) closeReleasePanel();
+        if (el.feedbackPanel?.classList.contains("is-visible")) closeFeedback();
+        else if (el.releasePanel?.classList.contains("is-visible")) closeReleasePanel();
         else if (!el.menuPanel.classList.contains("is-hidden")) closeMenu();
         else if (state.story && el.body.dataset.mode === "play") openMenu();
       }
