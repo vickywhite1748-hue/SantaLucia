@@ -22576,15 +22576,29 @@
       }
     }
 
+    function getFeedbackFormSrc() {
+      try {
+        const url = new URL(FEEDBACK_FORM_URL, window.location.href);
+        url.searchParams.set("_feedback_reload", String(Date.now()));
+        return url.toString();
+      } catch {
+        const separator = FEEDBACK_FORM_URL.includes("?") ? "&" : "?";
+        return `${FEEDBACK_FORM_URL}${separator}_feedback_reload=${Date.now()}`;
+      }
+    }
+
+    function resetFeedbackFrame() {
+      if (!el.feedbackFrame) return;
+      el.feedbackFrame.src = "about:blank";
+    }
+
     function openFeedback() {
       const context = getCurrentFeedbackContext();
       const body = buildFeedbackBody(context);
       setFeedbackContextText(body);
       el.feedbackContextText?.classList.add("is-hidden");
       if (el.feedbackToggleContextBtn) el.feedbackToggleContextBtn.textContent = "显示自动信息";
-      if (el.feedbackFrame && el.feedbackFrame.src !== FEEDBACK_FORM_URL) {
-        el.feedbackFrame.src = FEEDBACK_FORM_URL;
-      }
+      if (el.feedbackFrame) el.feedbackFrame.src = getFeedbackFormSrc();
       if (el.feedbackPanel) {
         el.feedbackPanel.classList.add("is-visible");
         el.feedbackPanel.setAttribute("aria-hidden", "false");
@@ -22595,6 +22609,7 @@
     function closeFeedback() {
       el.feedbackPanel?.classList.remove("is-visible");
       el.feedbackPanel?.setAttribute("aria-hidden", "true");
+      window.setTimeout(resetFeedbackFrame, 160);
     }
 
     function copyCurrentFeedbackContext() {
@@ -22616,7 +22631,7 @@
     }
 
     function openFeedbackFormWindow() {
-      const opened = window.open(FEEDBACK_FORM_URL, "_blank");
+      const opened = window.open(getFeedbackFormSrc(), "_blank");
       if (opened) opened.opener = null;
     }
 
