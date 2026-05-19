@@ -1282,6 +1282,32 @@
       margin-bottom: 3px;
     }
 
+    .feedback-fab {
+      position: fixed;
+      left: clamp(10px, 2.4vw, 24px);
+      top: 50%;
+      z-index: 58;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-solid) 92%, transparent);
+      color: var(--text);
+      box-shadow: 0 18px 54px var(--shadow);
+      padding: 0 13px;
+      cursor: pointer;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .12em;
+      transform: translateY(-50%);
+      backdrop-filter: blur(18px);
+    }
+
+    .feedback-fab:hover {
+      border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+      color: var(--accent);
+    }
+
     .decision-float {
       position: fixed;
       left: 50%;
@@ -1518,6 +1544,15 @@
         left: 12px;
         right: 12px;
         width: auto;
+      }
+
+      .feedback-fab {
+        left: 12px;
+        top: auto;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 84px);
+        min-height: 36px;
+        padding: 0 11px;
+        transform: none;
       }
     }
 
@@ -3585,7 +3620,7 @@
     }
   </style>
 </head>
-<body data-mode="launcher" data-home="library" data-theme="neutral" data-color-mode="light" data-ambient="none" data-debug-build="off" data-debug-editor="off">
+<body data-mode="launcher" data-home="library" data-theme="neutral" data-color-mode="light" data-ambient="none" data-debug-build="off" data-debug-editor="off" data-build-channel="public">
   <div class="backdrop"></div>
   <div class="grain"></div>
   <div class="vignette"></div>
@@ -3752,6 +3787,7 @@
 
   <div class="toast" id="toast" aria-live="polite"></div>
   <div class="decision-float" id="decisionFloat" aria-live="polite">重要决定已记录</div>
+  <button class="feedback-fab" id="feedbackBtn" type="button" aria-label="提交反馈">反馈</button>
   <section class="debug-panel is-hidden" id="debugPanel" aria-label="调试模式">
     <div class="debug-header">
       <strong>调试模式</strong>
@@ -3782,6 +3818,8 @@
 
     const DEBUG_BUILD_ENABLED = false;
     const DEBUG_EDITOR_ENABLED = false;
+    const BUILD_CHANNEL = "public";
+    const FEEDBACK_URL = "https://github.com/vickywhite1748-hue/SantaLucia/issues/new";
 
     const SAMPLE_STORY = {
       "meta": {
@@ -19789,6 +19827,7 @@
       sceneCopy: document.getElementById("sceneCopy"),
       toast: document.getElementById("toast"),
       decisionFloat: document.getElementById("decisionFloat"),
+      feedbackBtn: document.getElementById("feedbackBtn"),
       debugPanel: document.getElementById("debugPanel"),
       debugMinimizeBtn: document.getElementById("debugMinimizeBtn"),
       debugCloseBtn: document.getElementById("debugCloseBtn"),
@@ -22292,6 +22331,92 @@
       setTimeout(() => el.toast.classList.remove("is-visible"), 2600);
     }
 
+    function getBuildChannelLabel() {
+      if (BUILD_CHANNEL === "public") return "公开版";
+      if (BUILD_CHANNEL === "test") return "对外测试版";
+      return "本地测试版";
+    }
+
+    function getCurrentFeedbackContext() {
+      const node = state.story?.nodes?.[state.currentNodeId] || null;
+      const context = {
+        channel: BUILD_CHANNEL,
+        channelLabel: getBuildChannelLabel(),
+        url: window.location.href,
+        storyTitle: state.story?.meta?.title || "",
+        storyVersion: state.story?.meta?.version || "",
+        nodeId: state.currentNodeId || "",
+        nodeTitle: node?.title || node?.chapterTitle || "",
+        progress: node?.progress ?? null,
+        segmentIndex: state.segmentIndex ?? 0,
+        debugMode: DEBUG_BUILD_ENABLED ? state.settings.debugMode === true || state.settings.debugMode === "true" : false,
+        editorMode: DEBUG_EDITOR_ENABLED
+      };
+      if (DEBUG_BUILD_ENABLED) {
+        context.val = Math.round(state.val || 0);
+        context.vars = deepClone(state.vars || {});
+        context.flags = deepClone(state.flags || []);
+        context.visibleChoices = (node?.choices || [])
+          .filter(choice => checkCondition(choice.condition))
+          .map(choice => ({ text: choice.text || "继续", next: choice.next || "" }));
+      }
+      return context;
+    }
+
+    function buildFeedbackBody(context) {
+      return [
+        "请在这里描述你遇到的问题：",
+        "",
+        "---",
+        `版本：${context.storyVersion || "未载入"}`,
+        `页面：${context.channelLabel}`,
+        `作品：${context.storyTitle || "未载入"}`,
+        `节点：${context.nodeId || "未开始"}`,
+        `标题：${context.nodeTitle || "无"}`,
+        `进度：${context.progress ?? "无"}`,
+        `段落：${context.segmentIndex}`,
+        `页面地址：${context.url}`,
+        `调试模式：${context.debugMode ? "开启" : "关闭"}`,
+        `编辑模式：${context.editorMode ? "开启" : "关闭"}`,
+        "",
+        "测试信息：",
+        "```json",
+        JSON.stringify(context, null, 2),
+        "```"
+      ].join("\n");
+    }
+
+    async function copyFeedbackContext(body) {
+      try {
+        await navigator.clipboard.writeText(body);
+        showToast("反馈信息已复制", "请把复制内容粘贴给维护者。");
+      } catch {
+        showToast("无法打开反馈页", "浏览器拦截了新窗口，也没有开放剪贴板权限。");
+      }
+    }
+
+    function openFeedback() {
+      const context = getCurrentFeedbackContext();
+      const title = `[${context.channelLabel}] ${context.nodeId || context.storyVersion || "未开始"} 反馈`;
+      const body = buildFeedbackBody(context);
+      let target = FEEDBACK_URL;
+      try {
+        const url = new URL(FEEDBACK_URL, window.location.href);
+        url.searchParams.set("title", title);
+        url.searchParams.set("body", body);
+        target = url.toString();
+      } catch {
+        target = FEEDBACK_URL;
+      }
+      const opened = window.open(target, "_blank");
+      if (opened) {
+        opened.opener = null;
+        showToast("反馈页已打开", "当前节点信息已经预填。");
+      } else {
+        copyFeedbackContext(body);
+      }
+    }
+
     function showImportantDecision(label = "") {
       clearTimeout(state.decisionTimer);
       el.decisionFloat.textContent = label
@@ -22617,6 +22742,7 @@
       showToast("明暗模式已更新", button.textContent.trim());
     });
     document.addEventListener("click", handlePageClick);
+    el.feedbackBtn?.addEventListener("click", openFeedback);
     el.backBtn.addEventListener("click", goBack);
     el.menuBtn.addEventListener("click", openMenu);
     el.menuPanel.addEventListener("click", event => {
