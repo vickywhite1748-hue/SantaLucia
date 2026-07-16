@@ -3955,7 +3955,7 @@
       "meta": {
             "title": "桑塔露琪亚：离家的人",
             "author": "Codex 改写生成",
-            "version": "0.2.1",
+            "version": "0.2.2",
             "description": "Sonnyboy 主视角素材对齐修复版。正史仍由 Stevie 的报纸揭示 Gambino 枪击；本版修正伪选择、亲自救援承接、血缘揭示和结局经历匹配。",
             "ambient": "rain",
             "cover": {
@@ -3964,6 +3964,15 @@
                   "credit": "FROM @真理追赶交替"
             },
             "releaseNotes": [
+                  {
+                        "version": "0.2.2",
+                        "date": "2026-07-16",
+                        "items": [
+                              "精简 Luciano 临终身世揭示，并重写 Chi Chi 得知真相时的承接。",
+                              "让“遗言碎片”始终显示坦白或暂缓两个选择，修复条件不足时只剩单一路径的问题。",
+                              "统一离家紧急联系方式的归属和用途，重写 Stevie 报纸初遇中的抽象表达。"
+                        ]
+                  },
                   {
                         "version": "0.2.1",
                         "date": "2026-07-16",
@@ -4039,7 +4048,7 @@
             "graphKind": "dag",
             "entry": "s01_street_found",
             "generatedFrom": {
-                  "storyVersion": "0.2.1",
+                  "storyVersion": "0.2.2",
                   "nodeCount": 185,
                   "edgeCount": 267,
                   "reachableCount": 185,
@@ -8410,9 +8419,13 @@
                         "progress": 33
                   },
                   "s17_truth_reaction": {
-                        "role": "branch",
+                        "role": "branchMerge",
                         "layer": "L03_will_truth",
                         "parents": [
+                              {
+                                    "from": "s17_truth_partial_heard",
+                                    "kind": "choice:0"
+                              },
                               {
                                     "from": "s17_misheard",
                                     "kind": "choice:0"
@@ -8450,7 +8463,7 @@
                         ],
                         "children": [
                               {
-                                    "to": "s17_truth_answer_name",
+                                    "to": "s17_truth_reaction",
                                     "kind": "choice:0"
                               },
                               {
@@ -8464,11 +8477,7 @@
                               "achievements": []
                         },
                         "reads": {
-                              "flags": [
-                                    "chichi_trusted_small",
-                                    "explained_rose",
-                                    "photo_kept"
-                              ],
+                              "flags": [],
                               "variables": []
                         },
                         "progress": 44
@@ -9341,15 +9350,11 @@
                         "progress": 35
                   },
                   "s17_truth_answer_name": {
-                        "role": "merge",
+                        "role": "linear",
                         "layer": "L03_will_truth",
                         "parents": [
                               {
                                     "from": "s17_truth_reaction",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s17_truth_partial_heard",
                                     "kind": "choice:0"
                               }
                         ],
@@ -11268,17 +11273,17 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s17_truth_answer_name": {
-                        "title": "还是 Chi Chi",
+                  "s17_truth_reaction": {
+                        "title": "补说真相",
                         "layer": "L03_will_truth",
                         "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s17_truth_reaction",
+                                    "from": "s17_truth_partial_heard",
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s17_truth_partial_heard",
+                                    "from": "s17_misheard",
                                     "kind": "choice:0"
                               }
                         ],
@@ -11539,7 +11544,6 @@
                         ],
                         "readAt": [
                               "s16_will_route_logic",
-                              "s17_truth_partial_heard",
                               "s17_misheard"
                         ],
                         "important": true,
@@ -11566,7 +11570,6 @@
                         ],
                         "readAt": [
                               "s16_will_route_logic",
-                              "s17_truth_partial_heard",
                               "s17_misheard"
                         ],
                         "important": false,
@@ -11640,7 +11643,6 @@
                               "s09_family_photo"
                         ],
                         "readAt": [
-                              "s17_truth_partial_heard",
                               "s17_misheard"
                         ],
                         "important": true,
@@ -12768,7 +12770,7 @@
                               }
                         },
                         {
-                              "text": "离开前只给家族在 Las Vegas 的联络人 Mighele 留一个紧急联系方式，不要求回报",
+                              "text": "离开前只给 Las Vegas 的联络人 Mighele 留下你的紧急号码，不要求回报",
                               "next": "s26_departure_hidden",
                               "changes": {
                                     "val": 1,
@@ -12922,10 +12924,10 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你离开前把一个电话号码交给 Mighele。他是家族在 Las Vegas 的赌场联络人。这不是监视命令，也不允许他定期回报；只有 Bocchetti 家真正需要撤离某个人时，这张纸才可以被打开。"
+                              "text": "离开前，你把自己的号码留给 Mighele。你只说，如果 Bocchetti 家有人必须立刻撤离，就用它联系你。"
                         },
                         {
-                              "text": "你很清楚，留下联系方式仍算不上彻底离家。可至少这一次，你没有花钱让别人替你盯住 Chi Chi。"
+                              "text": "你没有让他汇报 Chi Chi 的行踪，也没有约定定期联系。这个号码只在真正出事时使用，不是让 Mighele 替你看着他。"
                         }
                   ],
                   "next": "s27_restaurant_hidden"
@@ -12968,7 +12970,7 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你到了布鲁克林餐厅。Mighele 的号码被压在纸袋暗层，但电话从来没有因为 Chi Chi 响起。你只能像真正离开的人那样，对纽约后来发生的事一无所知。"
+                              "text": "你到了布鲁克林餐厅。电话始终没有响起，至少 Mighele 没有因为 Chi Chi 打来。你只能像真正离开的人那样，对纽约后来发生的事一无所知。"
                         },
                         {
                               "text": "你在送餐时认识了 Florence，一位暂居纽约的英国姑娘。她后来常坐在靠窗的位置，看你揉面、切披萨。她看得出你还留着一张退路，却没有把每一次快乐都变成盘问。"
@@ -12976,7 +12978,7 @@
                   ],
                   "choices": [
                         {
-                              "text": "把号码锁进抽屉，不再拨出",
+                              "text": "不再为这件事主动联系 Mighele",
                               "next": "s27_hidden_locked",
                               "changes": {
                                     "val": 2
@@ -13050,14 +13052,14 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "报童一边吃披萨，一边把报纸举得很高，像那张纸能证明自己不是坏人。纸面却被他拿反了半寸。"
+                              "text": "报童一边吃披萨，一边把报纸挡在胸前。你问他今天有什么新闻，他立刻把纸举高，报头却倒了过来。"
                         },
                         {
-                              "text": "“我告诉你上面写什么，你不就不买了吗？”",
+                              "text": "“先买。买了我再告诉你。”",
                               "speaker": "报童"
                         },
                         {
-                              "text": "你看见标题里 Chi Chi 的名字，也看见孩子避开字行的眼神。你可以先把他当成一个有名字的人，也可以先读出正在追赶你们的消息。"
+                              "text": "标题里印着 Chi Chi 的名字，报童的目光却总从字行旁边滑开。你一时分不清他是在躲你，还是根本读不懂。你可以先问他的名字，也可以先把标题念给他听。"
                         }
                   ],
                   "choices": [
@@ -14853,11 +14855,11 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事。你的生母叫 Natalia，当年她失散的孩子就是你。你才是我的亲生儿子；Chi Chi 虽然不是亲生，也是我的儿子。”",
+                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "这个被藏了一生的真相终于有了完整形状。你几乎没听清自己的呼吸，只知道门外的人还不知道父亲刚刚改写了你们两个人的身份。"
+                              "text": "这几个字落下来，你一时听不见别的。Chi Chi 还在门外，也还不知道父亲最后说了什么。"
                         }
                   ],
                   "choices": [
@@ -14919,11 +14921,11 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事。你的生母叫 Natalia，当年她失散的孩子就是你。你才是我的亲生儿子；Chi Chi 虽然不是亲生，也是我的儿子。”",
+                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "这个被藏了一生的真相终于有了完整形状。你几乎没听清自己的呼吸，只知道门外的人还不知道父亲刚刚改写了你们两个人的身份。"
+                              "text": "这几个字落下来，你一时听不见别的。Chi Chi 还在门外，也还不知道父亲最后说了什么。"
                         }
                   ],
                   "choices": [
@@ -14985,11 +14987,11 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事。你的生母叫 Natalia，当年她失散的孩子就是你。你才是我的亲生儿子；Chi Chi 虽然不是亲生，也是我的儿子。”",
+                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "这个被藏了一生的真相终于有了完整形状。你几乎没听清自己的呼吸，只知道门外的人还不知道父亲刚刚改写了你们两个人的身份。"
+                              "text": "这几个字落下来，你一时听不见别的。Chi Chi 还在门外，也还不知道父亲最后说了什么。"
                         }
                   ],
                   "choices": [
@@ -15079,13 +15081,13 @@
                   "ambient": "sickroom",
                   "segments": [
                         {
-                              "text": "Chi Chi 抓住继承人的问题时，你终于听见自己开口。声音比想象中更哑，像每个字都要先从父亲的手里拿回来。"
+                              "text": "你终于把那句最难说的话交给他。声音比想象中更哑，像每个字都要先从父亲手里拿回来。"
                         },
                         {
-                              "text": "你把他没能听见的遗言补给他：产业要合法化，五大家族会乱，父亲要你召集他们。他把 Bocchetti 家族托给你，也把 Chi Chi 托给你。"
+                              "text": "你告诉他，Luciano 最后说，你才是他的亲生儿子，Chi Chi 不是。"
                         },
                         {
-                              "text": "你把最沉重的部分也说清楚：Natalia 是你的生母，你才是 Luciano 的亲生儿子；Chi Chi 不是亲生，却仍被 Luciano 当作儿子养大。你不确定自己是在交还真相，还是在亲手拆掉他最后能抓住的父亲。"
+                              "text": "话说出口，病房里一下安静了。你不知道自己是在交还真相，还是在亲手拆掉他最后能抓住的父亲。"
                         },
                         {
                               "text": "Chi Chi 没有立刻哭，也没有立刻骂你，只看着病床，又看向你。"
@@ -15131,39 +15133,26 @@
                               "text": "Chi Chi 推门进来时，只听见这几个碎片。Luciano 的手彻底松开，你把床边的位置让给他，也知道剩下的遗言必须由你补完。"
                         },
                         {
-                              "text": "你只先说出不会改变他身份的部分：产业要合法化，五大家族会乱，父亲把 Bocchetti 家族托给你，也嘱咐你照顾 Chi Chi。血缘真相还停在你喉咙里。"
+                              "text": "你先告诉他，Luciano 要你召集五大家族，把局面稳住。说到这里，你停了一下。最后那句关于你们两个人的话，还卡在喉咙里。"
                         },
                         {
                               "speaker": "Chi Chi",
                               "text": "“他还说了什么？”"
                         },
                         {
-                              "text": "现在开口，会在父亲刚死时拆掉他最后能抓住的身份；继续沉默，则会让这句话变成此后十年的伤口。"
+                              "text": "他在等你的回答。现在说，他会在父亲刚死时听见最残忍的真相；不说，这句话就会由你继续藏下去。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "现在说出血缘真相，不再替他选择知道的时机",
-                              "next": "s17_truth_answer_name",
+                              "text": "把父亲最后那句话也告诉他",
+                              "next": "s17_truth_reaction",
                               "changes": {
                                     "val": 4
-                              },
-                              "condition": {
-                                    "all": [
-                                          {
-                                                "flag": "chichi_trusted_small"
-                                          },
-                                          {
-                                                "flag": "explained_rose"
-                                          },
-                                          {
-                                                "flag": "photo_kept"
-                                          }
-                                    ]
                               }
                         },
                         {
-                              "text": "只补完父亲的托付，把血缘真相留到更晚",
+                              "text": "先停在这里，不说血缘",
                               "next": "s18_funeral",
                               "changes": {
                                     "val": 1
@@ -15691,7 +15680,7 @@
                   "ambient": "restaurant",
                   "segments": [
                         {
-                              "text": "你把 Mighele 的号码压进抽屉深处。纸被锁上时声音很轻；从那以后，没有一通电话替你提前解释纽约发生了什么。"
+                              "text": "你没有再联系 Mighele。从那以后，也没有一通电话替你提前解释纽约发生了什么。"
                         }
                   ],
                   "next": "s28_bridge_echo"
