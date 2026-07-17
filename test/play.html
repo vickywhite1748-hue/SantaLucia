@@ -3955,8 +3955,8 @@
       "meta": {
             "title": "桑塔露琪亚：离家的人",
             "author": "Codex 改写生成",
-            "version": "0.2.2",
-            "description": "Sonnyboy 主视角素材对齐修复版。正史仍由 Stevie 的报纸揭示 Gambino 枪击；本版修正伪选择、亲自救援承接、血缘揭示和结局经历匹配。",
+            "version": "0.2.3",
+            "description": "Sonnyboy 主视角原作对齐修复版。午夜会面固定由 Sonnyboy 陪 Chi Chi 抵达；原作线留在谈判桌旁见证枪击，游戏 IF 则在谈判正式开始时离席，二者在离家后的餐厅段落重新汇合。",
             "ambient": "rain",
             "cover": {
                   "label": "MIA FAMIGLIA / SONNYBOY",
@@ -3964,6 +3964,17 @@
                   "credit": "FROM @真理追赶交替"
             },
             "releaseNotes": [
+                  {
+                        "version": "0.2.3",
+                        "date": "2026-07-17",
+                        "items": [
+                              "合并测试稿新增文案，润色账本、家庭照片和黄玫瑰段落；修复带花回房后仍跳到“空手回家”、旧标题未同步及黄玫瑰重复选择。",
+                              "补全三条病床路线的血缘遗言，修复 Chi Chi 连续两次推门，并把“遗言之后”等不符合原作的重复或伪选择改为线性承接。",
+                              "午夜会面固定由 Sonnyboy 陪 Chi Chi 到桑塔露琪亚，真正分歧延后到谈判正式开始时离席或留下；原作线完整承接枪击、回家与离家。",
+                              "删除离家前给 Mighele 留紧急号码及其无后果分支，让离家路线固定进入布鲁克林餐厅。",
+                              "按原剧本恢复烤披萨、质问报童、读报、问名、递披萨与写信的顺序，修正 Gambino 身份，并把写信收束为当面说明或主动告别；真正的救援分歧延后到返纽约后。"
+                        ]
+                  },
                   {
                         "version": "0.2.2",
                         "date": "2026-07-16",
@@ -4048,13 +4059,13 @@
             "graphKind": "dag",
             "entry": "s01_street_found",
             "generatedFrom": {
-                  "storyVersion": "0.2.2",
-                  "nodeCount": 185,
-                  "edgeCount": 267,
-                  "reachableCount": 185,
+                  "storyVersion": "0.2.3",
+                  "nodeCount": 160,
+                  "edgeCount": 225,
+                  "reachableCount": 160,
                   "cycleCount": 0,
-                  "routeHubCount": 4,
-                  "mergeCount": 54
+                  "routeHubCount": 6,
+                  "mergeCount": 45
             },
             "layers": [
                   {
@@ -4116,7 +4127,6 @@
                               "s14_rose_broken",
                               "s_no_rose_silence_feedback",
                               "s_no_rose_guard_feedback",
-                              "s_no_rose_route",
                               "s_no_rose_late_apology",
                               "s_no_rose_distant_guard",
                               "s14_rose_control",
@@ -4164,9 +4174,6 @@
                               "s16_delayed_feedback",
                               "s17_truth_answer_name",
                               "s17_truth_silence",
-                              "s18_legal_accept_feedback",
-                              "s18_survive_warning_feedback",
-                              "s18_shield_family_feedback",
                               "s18_truth_refuse_decide_feedback",
                               "s18_truth_survive_first_feedback",
                               "s17_grief_before_funeral",
@@ -4185,23 +4192,14 @@
                               "s22_table_pressure",
                               "s22_table_beside",
                               "s23_known_after_shot",
-                              "s33_from_after_shot_feedback",
                               "s26_departure_open",
-                              "s26_departure_hidden",
                               "s27_restaurant_clean",
-                              "s27_restaurant_hidden",
                               "s28_bridge_echo",
                               "s33_stay_family_takeover",
                               "s19_inheritance_truth",
                               "s_same_lamp_route",
                               "s_same_lamp_stepano_found",
-                              "s_same_lamp_stepano_home",
-                              "s27_flour_shell",
-                              "s27_ny_glance",
-                              "s27_hidden_locked",
-                              "s27_hidden_note",
-                              "s26_departure_cook_feedback",
-                              "s26_departure_almost_feedback"
+                              "s_same_lamp_stepano_home"
                         ]
                   },
                   {
@@ -4212,31 +4210,22 @@
                               72
                         ],
                         "nodes": [
-                              "s29_stevie_caught",
                               "s30_newspaper_first",
                               "s31_chichi_news_first",
                               "s32_letter_to_florence_first",
                               "s35_public_news_known",
-                              "s33_stay_family_known",
                               "s35_return_from_paper",
                               "s35_return_known",
-                              "s_room_check",
                               "s34_florence_full_first",
                               "s34_florence_partial_first",
-                              "s34_florence_known_full",
-                              "s33_from_florence_full_feedback",
-                              "s34_florence_known_partial",
-                              "s33_from_florence_partial_feedback",
+                              "s35_return_route",
                               "s_stay_family_pressure",
                               "s_stay_family_chichi_freedom",
                               "s_stay_family_edges_feedback",
                               "s_stay_family_limited_freedom_feedback",
                               "s_stay_family_chichi_distance",
-                              "s32_revenge_first_feedback",
                               "s29_stevie_questioned",
-                              "s31_headline_first",
-                              "s34_partial_completed_feedback",
-                              "s34_partial_withheld_feedback"
+                              "s30_newspaper_route"
                         ]
                   },
                   {
@@ -4256,9 +4245,6 @@
                               "s37_fast_from_personal_feedback",
                               "s36_price_bargain_first",
                               "s36_price_save_known",
-                              "s36_price_politics_known",
-                              "s37_fast_from_politics_too_slow_feedback",
-                              "s37_slow_from_politics_feedback",
                               "s37_search_fast",
                               "s37_search_slow",
                               "s39_mighele_meeting",
@@ -5349,7 +5335,7 @@
                         "progress": 32
                   },
                   "s18_funeral": {
-                        "role": "branchMerge",
+                        "role": "merge",
                         "layer": "L03_will_truth",
                         "parents": [
                               {
@@ -5367,16 +5353,8 @@
                         ],
                         "children": [
                               {
-                                    "to": "s18_legal_accept_feedback",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s18_survive_warning_feedback",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "to": "s18_shield_family_feedback",
-                                    "kind": "choice:2"
+                                    "to": "s19_inheritance",
+                                    "kind": "next"
                               }
                         ],
                         "sets": {
@@ -5391,19 +5369,11 @@
                         "progress": 45
                   },
                   "s19_inheritance": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L03_will_truth",
                         "parents": [
                               {
-                                    "from": "s18_legal_accept_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s18_survive_warning_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s18_shield_family_feedback",
+                                    "from": "s18_funeral",
                                     "kind": "next"
                               }
                         ],
@@ -5422,6 +5392,7 @@
                               "variables": [],
                               "achievements": [
                                     "ach_canon_leave",
+                                    "ach_left_family",
                                     "ach_stayed_table"
                               ]
                         },
@@ -5432,7 +5403,7 @@
                         "progress": 47
                   },
                   "s20_canon_leave_table": {
-                        "role": "branchMerge",
+                        "role": "merge",
                         "layer": "L04_inheritance_table",
                         "parents": [
                               {
@@ -5447,20 +5418,13 @@
                         "children": [
                               {
                                     "to": "s26_departure_open",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s26_departure_hidden",
-                                    "kind": "choice:1"
+                                    "kind": "next"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
-                              "achievements": [
-                                    "ach_left_family",
-                                    "ach_hidden_lines"
-                              ]
+                              "achievements": []
                         },
                         "reads": {
                               "flags": [],
@@ -5488,9 +5452,14 @@
                               }
                         ],
                         "sets": {
-                              "flags": [],
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
                               "variables": [],
-                              "achievements": []
+                              "achievements": [
+                                    "ach_left_family",
+                                    "ach_public_news"
+                              ]
                         },
                         "reads": {
                               "flags": [],
@@ -5518,9 +5487,14 @@
                               }
                         ],
                         "sets": {
-                              "flags": [],
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
                               "variables": [],
-                              "achievements": []
+                              "achievements": [
+                                    "ach_left_family",
+                                    "ach_public_news"
+                              ]
                         },
                         "reads": {
                               "flags": [],
@@ -5529,7 +5503,7 @@
                         "progress": 52
                   },
                   "s23_known_after_shot": {
-                        "role": "branchMerge",
+                        "role": "merge",
                         "layer": "L04_inheritance_table",
                         "parents": [
                               {
@@ -5543,12 +5517,8 @@
                         ],
                         "children": [
                               {
-                                    "to": "s35_public_news_known",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s33_from_after_shot_feedback",
-                                    "kind": "choice:1"
+                                    "to": "s27_restaurant_clean",
+                                    "kind": "next"
                               }
                         ],
                         "sets": {
@@ -5562,18 +5532,48 @@
                         },
                         "progress": 54
                   },
-                  "s33_from_after_shot_feedback": {
+                  "s26_departure_open": {
                         "role": "linear",
+                        "layer": "L04_inheritance_table",
+                        "parents": [
+                              {
+                                    "from": "s20_canon_leave_table",
+                                    "kind": "next"
+                              }
+                        ],
+                        "children": [
+                              {
+                                    "to": "s27_restaurant_clean",
+                                    "kind": "next"
+                              }
+                        ],
+                        "sets": {
+                              "flags": [],
+                              "variables": [],
+                              "achievements": []
+                        },
+                        "reads": {
+                              "flags": [],
+                              "variables": []
+                        },
+                        "progress": 54
+                  },
+                  "s27_restaurant_clean": {
+                        "role": "merge",
                         "layer": "L04_inheritance_table",
                         "parents": [
                               {
                                     "from": "s23_known_after_shot",
-                                    "kind": "choice:1"
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s26_departure_open",
+                                    "kind": "next"
                               }
                         ],
                         "children": [
                               {
-                                    "to": "s33_stay_family_known",
+                                    "to": "s28_bridge_echo",
                                     "kind": "next"
                               }
                         ],
@@ -5586,165 +5586,27 @@
                               "flags": [],
                               "variables": []
                         },
-                        "progress": 58
+                        "progress": 56
                   },
-                  "s26_departure_open": {
-                        "role": "branch",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s20_canon_leave_table",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s26_departure_cook_feedback",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s26_departure_almost_feedback",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 52
-                  },
-                  "s26_departure_hidden": {
+                  "s28_bridge_echo": {
                         "role": "linear",
                         "layer": "L04_inheritance_table",
                         "parents": [
                               {
-                                    "from": "s20_canon_leave_table",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s27_restaurant_hidden",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 52
-                  },
-                  "s27_restaurant_clean": {
-                        "role": "branchMerge",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s26_departure_cook_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s26_departure_almost_feedback",
+                                    "from": "s27_restaurant_clean",
                                     "kind": "next"
                               }
                         ],
                         "children": [
-                              {
-                                    "to": "s27_flour_shell",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s27_ny_glance",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 55
-                  },
-                  "s27_restaurant_hidden": {
-                        "role": "branch",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s26_departure_hidden",
-                                    "kind": "next"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s27_hidden_locked",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s27_hidden_note",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 55
-                  },
-                  "s28_bridge_echo": {
-                        "role": "branchMerge",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s27_flour_shell",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_ny_glance",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_hidden_locked",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_hidden_note",
-                                    "kind": "next"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s29_stevie_caught",
-                                    "kind": "choice:0"
-                              },
                               {
                                     "to": "s29_stevie_questioned",
-                                    "kind": "choice:1"
+                                    "kind": "next"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
-                              "achievements": [
-                                    "ach_stevie"
-                              ]
+                              "achievements": []
                         },
                         "reads": {
                               "flags": [],
@@ -5752,18 +5614,18 @@
                         },
                         "progress": 58
                   },
-                  "s29_stevie_caught": {
+                  "s29_stevie_questioned": {
                         "role": "linear",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
                                     "from": "s28_bridge_echo",
-                                    "kind": "choice:0"
+                                    "kind": "next"
                               }
                         ],
                         "children": [
                               {
-                                    "to": "s30_newspaper_first",
+                                    "to": "s30_newspaper_route",
                                     "kind": "next"
                               }
                         ],
@@ -5778,14 +5640,10 @@
                         },
                         "progress": 60
                   },
-                  "s30_newspaper_first": {
-                        "role": "branchMerge",
+                  "s30_newspaper_route": {
+                        "role": "router",
                         "layer": "L05_restaurant_news",
                         "parents": [
-                              {
-                                    "from": "s29_stevie_caught",
-                                    "kind": "next"
-                              },
                               {
                                     "from": "s29_stevie_questioned",
                                     "kind": "next"
@@ -5793,20 +5651,46 @@
                         ],
                         "children": [
                               {
-                                    "to": "s31_chichi_news_first",
-                                    "kind": "choice:0"
+                                    "to": "s35_public_news_known",
+                                    "kind": "route:0"
                               },
                               {
-                                    "to": "s31_headline_first",
-                                    "kind": "choice:1"
+                                    "to": "s30_newspaper_first",
+                                    "kind": "route:1"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
-                              "achievements": [
-                                    "ach_newspaper"
-                              ]
+                              "achievements": []
+                        },
+                        "reads": {
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
+                              "variables": []
+                        },
+                        "progress": 61
+                  },
+                  "s30_newspaper_first": {
+                        "role": "linear",
+                        "layer": "L05_restaurant_news",
+                        "parents": [
+                              {
+                                    "from": "s30_newspaper_route",
+                                    "kind": "route:1"
+                              }
+                        ],
+                        "children": [
+                              {
+                                    "to": "s31_chichi_news_first",
+                                    "kind": "next"
+                              }
+                        ],
+                        "sets": {
+                              "flags": [],
+                              "variables": [],
+                              "achievements": []
                         },
                         "reads": {
                               "flags": [],
@@ -5815,12 +5699,16 @@
                         "progress": 62
                   },
                   "s31_chichi_news_first": {
-                        "role": "linear",
+                        "role": "merge",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
                                     "from": "s30_newspaper_first",
-                                    "kind": "choice:0"
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s35_public_news_known",
+                                    "kind": "next"
                               }
                         ],
                         "children": [
@@ -5841,15 +5729,11 @@
                         "progress": 64
                   },
                   "s32_letter_to_florence_first": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
                                     "from": "s31_chichi_news_first",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s31_headline_first",
                                     "kind": "next"
                               }
                         ],
@@ -5861,17 +5745,14 @@
                               {
                                     "to": "s34_florence_partial_first",
                                     "kind": "choice:1"
-                              },
-                              {
-                                    "to": "s32_revenge_first_feedback",
-                                    "kind": "choice:2"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
                               "achievements": [
-                                    "ach_late"
+                                    "ach_newspaper",
+                                    "ach_stevie"
                               ]
                         },
                         "reads": {
@@ -5881,62 +5762,18 @@
                         "progress": 66
                   },
                   "s35_public_news_known": {
-                        "role": "branch",
+                        "role": "linear",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
-                                    "from": "s23_known_after_shot",
-                                    "kind": "choice:0"
+                                    "from": "s30_newspaper_route",
+                                    "kind": "route:0"
                               }
                         ],
                         "children": [
                               {
-                                    "to": "s34_florence_known_full",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s34_florence_known_partial",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": [
-                                    "ach_public_news"
-                              ]
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 61
-                  },
-                  "s33_stay_family_known": {
-                        "role": "branchMerge",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s33_from_after_shot_feedback",
+                                    "to": "s31_chichi_news_first",
                                     "kind": "next"
-                              },
-                              {
-                                    "from": "s33_from_florence_full_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s33_from_florence_partial_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s_stay_family_pressure",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s_stay_family_chichi_distance",
-                                    "kind": "choice:1"
                               }
                         ],
                         "sets": {
@@ -5948,7 +5785,7 @@
                               "flags": [],
                               "variables": []
                         },
-                        "progress": 69
+                        "progress": 62
                   },
                   "s33_stay_family_takeover": {
                         "role": "branchMerge",
@@ -5985,20 +5822,12 @@
                         "progress": 52
                   },
                   "s35_return_from_paper": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
-                                    "from": "s34_florence_full_first",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s34_partial_completed_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s34_partial_withheld_feedback",
-                                    "kind": "next"
+                                    "from": "s35_return_route",
+                                    "kind": "route:1"
                               }
                         ],
                         "children": [
@@ -6015,6 +5844,7 @@
                               "flags": [],
                               "variables": [],
                               "achievements": [
+                                    "ach_florence",
                                     "ach_return"
                               ]
                         },
@@ -6025,32 +5855,31 @@
                         "progress": 72
                   },
                   "s35_return_known": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
-                                    "from": "s34_florence_known_full",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s34_florence_known_partial",
-                                    "kind": "choice:0"
+                                    "from": "s35_return_route",
+                                    "kind": "route:0"
                               }
                         ],
                         "children": [
                               {
-                                    "to": "s36_price_save_known",
+                                    "to": "s36_price_bargain_first",
                                     "kind": "choice:0"
                               },
                               {
-                                    "to": "s36_price_politics_known",
+                                    "to": "s36_price_save_known",
                                     "kind": "choice:1"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
-                              "achievements": []
+                              "achievements": [
+                                    "ach_florence",
+                                    "ach_return"
+                              ]
                         },
                         "reads": {
                               "flags": [],
@@ -6206,39 +6035,6 @@
                         },
                         "progress": 96
                   },
-                  "s_room_check": {
-                        "role": "branch",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s34_florence_full_first",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s36_price_bargain_first",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s_late_route",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": [
-                                    "ach_return",
-                                    "ach_late"
-                              ]
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 72
-                  },
                   "s_final_route": {
                         "role": "merge",
                         "layer": "L07_record_endgame",
@@ -6360,20 +6156,12 @@
                         "progress": 80
                   },
                   "s_late_route": {
-                        "role": "merge",
+                        "role": "linear",
                         "layer": "L06_rescue_return",
                         "parents": [
                               {
-                                    "from": "s_room_check",
-                                    "kind": "choice:1"
-                              },
-                              {
                                     "from": "s37_search_slow",
                                     "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s32_revenge_first_feedback",
-                                    "kind": "next"
                               }
                         ],
                         "children": [
@@ -6744,7 +6532,7 @@
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s_room_check",
+                                    "from": "s35_return_known",
                                     "kind": "choice:0"
                               }
                         ],
@@ -6775,7 +6563,7 @@
                         "parents": [
                               {
                                     "from": "s35_return_known",
-                                    "kind": "choice:0"
+                                    "kind": "choice:1"
                               }
                         ],
                         "children": [
@@ -6799,98 +6587,12 @@
                         },
                         "progress": 74
                   },
-                  "s36_price_politics_known": {
-                        "role": "branch",
-                        "layer": "L06_rescue_return",
-                        "parents": [
-                              {
-                                    "from": "s35_return_known",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s37_slow_from_politics_feedback",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s37_fast_from_politics_too_slow_feedback",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 74
-                  },
-                  "s37_fast_from_politics_too_slow_feedback": {
-                        "role": "linear",
-                        "layer": "L06_rescue_return",
-                        "parents": [
-                              {
-                                    "from": "s36_price_politics_known",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s37_search_fast",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 77
-                  },
-                  "s37_slow_from_politics_feedback": {
-                        "role": "linear",
-                        "layer": "L06_rescue_return",
-                        "parents": [
-                              {
-                                    "from": "s36_price_politics_known",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s37_search_slow",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 76
-                  },
                   "s37_search_fast": {
                         "role": "branchMerge",
                         "layer": "L06_rescue_return",
                         "parents": [
                               {
                                     "from": "s37_fast_from_personal_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s37_fast_from_politics_too_slow_feedback",
                                     "kind": "next"
                               },
                               {
@@ -6934,10 +6636,6 @@
                                     "kind": "next"
                               },
                               {
-                                    "from": "s37_slow_from_politics_feedback",
-                                    "kind": "next"
-                              },
-                              {
                                     "from": "s37_slow_from_partial_cover_feedback",
                                     "kind": "next"
                               }
@@ -6956,8 +6654,8 @@
                               "flags": [],
                               "variables": [],
                               "achievements": [
-                                    "ach_reunion",
-                                    "ach_late"
+                                    "ach_late",
+                                    "ach_reunion"
                               ]
                         },
                         "reads": {
@@ -7271,7 +6969,7 @@
                         "progress": 92
                   },
                   "s34_florence_full_first": {
-                        "role": "branch",
+                        "role": "linear",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
@@ -7281,20 +6979,14 @@
                         ],
                         "children": [
                               {
-                                    "to": "s35_return_from_paper",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s_room_check",
-                                    "kind": "choice:1"
+                                    "to": "s35_return_route",
+                                    "kind": "next"
                               }
                         ],
                         "sets": {
                               "flags": [],
                               "variables": [],
-                              "achievements": [
-                                    "ach_florence"
-                              ]
+                              "achievements": []
                         },
                         "reads": {
                               "flags": [],
@@ -7303,7 +6995,7 @@
                         "progress": 68
                   },
                   "s34_florence_partial_first": {
-                        "role": "branch",
+                        "role": "linear",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
@@ -7313,71 +7005,7 @@
                         ],
                         "children": [
                               {
-                                    "to": "s34_partial_completed_feedback",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s34_partial_withheld_feedback",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": [
-                                    "ach_florence"
-                              ]
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 68
-                  },
-                  "s34_florence_known_full": {
-                        "role": "branch",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s35_public_news_known",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s35_return_known",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s33_from_florence_full_feedback",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": [
-                                    "ach_florence"
-                              ]
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 68
-                  },
-                  "s33_from_florence_full_feedback": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s34_florence_known_full",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s33_stay_family_known",
+                                    "to": "s35_return_route",
                                     "kind": "next"
                               }
                         ],
@@ -7390,53 +7018,29 @@
                               "flags": [],
                               "variables": []
                         },
-                        "progress": 69
+                        "progress": 68
                   },
-                  "s34_florence_known_partial": {
-                        "role": "branch",
+                  "s35_return_route": {
+                        "role": "router",
                         "layer": "L05_restaurant_news",
                         "parents": [
                               {
-                                    "from": "s35_public_news_known",
-                                    "kind": "choice:1"
+                                    "from": "s34_florence_full_first",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s34_florence_partial_first",
+                                    "kind": "next"
                               }
                         ],
                         "children": [
                               {
                                     "to": "s35_return_known",
-                                    "kind": "choice:0"
+                                    "kind": "route:0"
                               },
                               {
-                                    "to": "s33_from_florence_partial_feedback",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": [
-                                    "ach_florence"
-                              ]
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 68
-                  },
-                  "s33_from_florence_partial_feedback": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s34_florence_known_partial",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s33_stay_family_known",
-                                    "kind": "next"
+                                    "to": "s35_return_from_paper",
+                                    "kind": "route:1"
                               }
                         ],
                         "sets": {
@@ -7445,10 +7049,12 @@
                               "achievements": []
                         },
                         "reads": {
-                              "flags": [],
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
                               "variables": []
                         },
-                        "progress": 69
+                        "progress": 71
                   },
                   "s14_rose_router": {
                         "role": "merge",
@@ -7592,7 +7198,9 @@
                               }
                         ],
                         "sets": {
-                              "flags": [],
+                              "flags": [
+                                    "sonny_control_seed"
+                              ],
                               "variables": [],
                               "achievements": [
                                     "ach_no_rose"
@@ -7615,7 +7223,7 @@
                         ],
                         "children": [
                               {
-                                    "to": "s_no_rose_route",
+                                    "to": "s_no_rose_distant_guard",
                                     "kind": "next"
                               }
                         ],
@@ -7641,7 +7249,7 @@
                         ],
                         "children": [
                               {
-                                    "to": "s_no_rose_route",
+                                    "to": "s_no_rose_late_apology",
                                     "kind": "next"
                               }
                         ],
@@ -7657,13 +7265,9 @@
                         "progress": 31
                   },
                   "s_stay_family_pressure": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L05_restaurant_news",
                         "parents": [
-                              {
-                                    "from": "s33_stay_family_known",
-                                    "kind": "choice:0"
-                              },
                               {
                                     "from": "s33_stay_family_takeover",
                                     "kind": "choice:0"
@@ -7773,13 +7377,9 @@
                         "progress": 72
                   },
                   "s_stay_family_chichi_distance": {
-                        "role": "branchMerge",
+                        "role": "branch",
                         "layer": "L05_restaurant_news",
                         "parents": [
-                              {
-                                    "from": "s33_stay_family_known",
-                                    "kind": "choice:1"
-                              },
                               {
                                     "from": "s33_stay_family_takeover",
                                     "kind": "choice:1"
@@ -7878,49 +7478,13 @@
                         },
                         "progress": 76
                   },
-                  "s_no_rose_route": {
-                        "role": "branchMerge",
-                        "layer": "L02_house_rules",
-                        "parents": [
-                              {
-                                    "from": "s_no_rose_silence_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s_no_rose_guard_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s_no_rose_late_apology",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "to": "s_no_rose_distant_guard",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [
-                                    "sonny_control_seed"
-                              ],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 32
-                  },
                   "s_no_rose_late_apology": {
                         "role": "linear",
                         "layer": "L02_house_rules",
                         "parents": [
                               {
-                                    "from": "s_no_rose_route",
-                                    "kind": "choice:0"
+                                    "from": "s_no_rose_guard_feedback",
+                                    "kind": "next"
                               }
                         ],
                         "children": [
@@ -7945,8 +7509,8 @@
                         "layer": "L02_house_rules",
                         "parents": [
                               {
-                                    "from": "s_no_rose_route",
-                                    "kind": "choice:1"
+                                    "from": "s_no_rose_silence_feedback",
+                                    "kind": "next"
                               }
                         ],
                         "children": [
@@ -7991,8 +7555,8 @@
                               ],
                               "variables": [],
                               "achievements": [
-                                    "ach_rose",
-                                    "ach_no_rose"
+                                    "ach_no_rose",
+                                    "ach_rose"
                               ]
                         },
                         "reads": {
@@ -8674,6 +8238,7 @@
                               "variables": [],
                               "achievements": [
                                     "ach_canon_leave",
+                                    "ach_left_family",
                                     "ach_stayed_table"
                               ]
                         },
@@ -8782,32 +8347,6 @@
                               "variables": []
                         },
                         "progress": 58
-                  },
-                  "s32_revenge_first_feedback": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s32_letter_to_florence_first",
-                                    "kind": "choice:2"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s_late_route",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 67
                   },
                   "s16_called_feedback": {
                         "role": "merge",
@@ -9085,110 +8624,6 @@
                         },
                         "progress": 88
                   },
-                  "s27_flour_shell": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s27_restaurant_clean",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s28_bridge_echo",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 56
-                  },
-                  "s27_ny_glance": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s27_restaurant_clean",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s28_bridge_echo",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 56
-                  },
-                  "s27_hidden_locked": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s27_restaurant_hidden",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s28_bridge_echo",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 56
-                  },
-                  "s27_hidden_note": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s27_restaurant_hidden",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s28_bridge_echo",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 56
-                  },
                   "s36_known_press_details": {
                         "role": "linear",
                         "layer": "L06_rescue_return",
@@ -9401,84 +8836,6 @@
                         },
                         "progress": 45
                   },
-                  "s18_legal_accept_feedback": {
-                        "role": "linear",
-                        "layer": "L03_will_truth",
-                        "parents": [
-                              {
-                                    "from": "s18_funeral",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s19_inheritance",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 46
-                  },
-                  "s18_survive_warning_feedback": {
-                        "role": "linear",
-                        "layer": "L03_will_truth",
-                        "parents": [
-                              {
-                                    "from": "s18_funeral",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s19_inheritance",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 46
-                  },
-                  "s18_shield_family_feedback": {
-                        "role": "linear",
-                        "layer": "L03_will_truth",
-                        "parents": [
-                              {
-                                    "from": "s18_funeral",
-                                    "kind": "choice:2"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s19_inheritance",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 46
-                  },
                   "s18_truth_refuse_decide_feedback": {
                         "role": "linear",
                         "layer": "L03_will_truth",
@@ -9530,58 +8887,6 @@
                               "variables": []
                         },
                         "progress": 48
-                  },
-                  "s26_departure_cook_feedback": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s26_departure_open",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s27_restaurant_clean",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 53
-                  },
-                  "s26_departure_almost_feedback": {
-                        "role": "linear",
-                        "layer": "L04_inheritance_table",
-                        "parents": [
-                              {
-                                    "from": "s26_departure_open",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s27_restaurant_clean",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 53
                   },
                   "s15_flower_language_full": {
                         "role": "branch",
@@ -9747,110 +9052,6 @@
                         },
                         "progress": 44
                   },
-                  "s29_stevie_questioned": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s28_bridge_echo",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s30_newspaper_first",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 60
-                  },
-                  "s31_headline_first": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s30_newspaper_first",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s32_letter_to_florence_first",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 64
-                  },
-                  "s34_partial_completed_feedback": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s34_florence_partial_first",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s35_return_from_paper",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 68
-                  },
-                  "s34_partial_withheld_feedback": {
-                        "role": "linear",
-                        "layer": "L05_restaurant_news",
-                        "parents": [
-                              {
-                                    "from": "s34_florence_partial_first",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "children": [
-                              {
-                                    "to": "s35_return_from_paper",
-                                    "kind": "next"
-                              }
-                        ],
-                        "sets": {
-                              "flags": [],
-                              "variables": [],
-                              "achievements": []
-                        },
-                        "reads": {
-                              "flags": [],
-                              "variables": []
-                        },
-                        "progress": 68
-                  },
                   "s_white_from_ten_year_coverup": {
                         "role": "linear",
                         "layer": "L07_record_endgame",
@@ -9939,6 +9140,28 @@
                   }
             },
             "routeHubs": {
+                  "s30_newspaper_route": {
+                        "layer": "L05_restaurant_news",
+                        "reads": {
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
+                              "variables": []
+                        },
+                        "exits": [
+                              {
+                                    "condition": {
+                                          "flag": "witnessed_gambino_shot"
+                                    },
+                                    "next": "s35_public_news_known"
+                              },
+                              {
+                                    "condition": "default",
+                                    "next": "s30_newspaper_first"
+                              }
+                        ],
+                        "defaultExit": "s30_newspaper_first"
+                  },
                   "s_final_route_logic": {
                         "layer": "L07_record_endgame",
                         "reads": {
@@ -10035,6 +9258,28 @@
                               }
                         ],
                         "defaultExit": "ending_white_record"
+                  },
+                  "s35_return_route": {
+                        "layer": "L05_restaurant_news",
+                        "reads": {
+                              "flags": [
+                                    "witnessed_gambino_shot"
+                              ],
+                              "variables": []
+                        },
+                        "exits": [
+                              {
+                                    "condition": {
+                                          "flag": "witnessed_gambino_shot"
+                                    },
+                                    "next": "s35_return_known"
+                              },
+                              {
+                                    "condition": "default",
+                                    "next": "s35_return_from_paper"
+                              }
+                        ],
+                        "defaultExit": "s35_return_from_paper"
                   },
                   "s14_rose_router_logic": {
                         "layer": "L02_house_rules",
@@ -10349,21 +9594,47 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s14_rose_router": {
-                        "title": "十六岁之前",
+                  "s15_rose_scold": {
+                        "title": "父亲转身",
                         "layer": "L02_house_rules",
                         "inDegree": 3,
                         "incoming": [
                               {
-                                    "from": "s12_returned_gun",
+                                    "from": "s15_rose_scold_from_late_control",
                                     "kind": "next"
                               },
                               {
-                                    "from": "s13_chose_brother",
+                                    "from": "s14_rose_warm_hand",
                                     "kind": "next"
                               },
                               {
-                                    "from": "s13_luciano_reason",
+                                    "from": "s14_rose_warm_tease",
+                                    "kind": "next"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s18_funeral": {
+                        "title": "遗言之后",
+                        "layer": "L03_will_truth",
+                        "inDegree": 3,
+                        "incoming": [
+                              {
+                                    "from": "s17_truth_partial_heard",
+                                    "kind": "choice:1"
+                              },
+                              {
+                                    "from": "s17_grief_before_funeral",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s17_control_before_funeral",
                                     "kind": "next"
                               }
                         ],
@@ -10376,7 +9647,7 @@
                         "preserveDifferences": []
                   },
                   "s20_canon_leave_table": {
-                        "title": "退场",
+                        "title": "谈判开始时离席",
                         "layer": "L04_inheritance_table",
                         "inDegree": 2,
                         "incoming": [
@@ -10398,7 +9669,7 @@
                         "preserveDifferences": []
                   },
                   "s23_known_after_shot": {
-                        "title": "血迹旁边",
+                        "title": "枪声之后的“好”",
                         "layer": "L04_inheritance_table",
                         "inDegree": 2,
                         "incoming": [
@@ -10409,6 +9680,50 @@
                               {
                                     "from": "s22_table_beside",
                                     "kind": "choice:0"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s27_restaurant_clean": {
+                        "title": "披萨 Florence",
+                        "layer": "L04_inheritance_table",
+                        "inDegree": 2,
+                        "incoming": [
+                              {
+                                    "from": "s23_known_after_shot",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s26_departure_open",
+                                    "kind": "next"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s31_chichi_news_first": {
+                        "title": "Stepano，也可以叫 Stevie",
+                        "layer": "L05_restaurant_news",
+                        "inDegree": 2,
+                        "incoming": [
+                              {
+                                    "from": "s30_newspaper_first",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s35_public_news_known",
+                                    "kind": "next"
                               }
                         ],
                         "commonFacts": [
@@ -10441,88 +9756,22 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s33_stay_family_known": {
-                        "title": "留在王座旁",
-                        "layer": "L05_restaurant_news",
+                  "s38_lasvegas": {
+                        "title": "追上逃亡线",
+                        "layer": "L06_rescue_return",
                         "inDegree": 3,
                         "incoming": [
                               {
-                                    "from": "s33_from_after_shot_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s33_from_florence_full_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s33_from_florence_partial_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s30_newspaper_first": {
-                        "title": "拿反的报纸",
-                        "layer": "L05_restaurant_news",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s29_stevie_caught",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s29_stevie_questioned",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s32_letter_to_florence_first": {
-                        "title": "给 Florence 的信",
-                        "layer": "L05_restaurant_news",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s31_chichi_news_first",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s31_headline_first",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s_stay_family_pressure": {
-                        "title": "五大家族的压力",
-                        "layer": "L05_restaurant_news",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s33_stay_family_known",
+                                    "from": "s37_search_fast",
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s33_stay_family_takeover",
+                                    "from": "s37_search_slow",
                                     "kind": "choice:0"
+                              },
+                              {
+                                    "from": "s38_lasvegas_delayed",
+                                    "kind": "next"
                               }
                         ],
                         "commonFacts": [
@@ -10533,39 +9782,21 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s_stay_family_chichi_distance": {
-                        "title": "被保护的人",
-                        "layer": "L05_restaurant_news",
-                        "inDegree": 2,
+                  "s43_draft": {
+                        "title": "不好看的真话",
+                        "layer": "L07_record_endgame",
+                        "inDegree": 3,
                         "incoming": [
                               {
-                                    "from": "s33_stay_family_known",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s33_stay_family_takeover",
-                                    "kind": "choice:1"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s36_price_bargain_first": {
-                        "title": "看不见的救援",
-                        "layer": "L06_rescue_return",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s35_return_from_paper",
+                                    "from": "s42_santalucia_all",
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s_room_check",
+                                    "from": "s42_santalucia_half",
+                                    "kind": "choice:0"
+                              },
+                              {
+                                    "from": "s42_chichi_return_mia",
                                     "kind": "choice:0"
                               }
                         ],
@@ -10651,32 +9882,6 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s_late_route": {
-                        "title": "太晚",
-                        "layer": "L06_rescue_return",
-                        "inDegree": 3,
-                        "incoming": [
-                              {
-                                    "from": "s_room_check",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s37_search_slow",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s32_revenge_first_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
                   "ending_white_record": {
                         "title": "结局：白纸履历",
                         "layer": "L99_endings",
@@ -10697,28 +9902,6 @@
                               {
                                     "from": "s_white_from_failed_mia",
                                     "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s_white_from_failed_mia": {
-                        "title": "没有成立的共同署名",
-                        "layer": "L07_record_endgame",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s_final_route_logic",
-                                    "kind": "route:4"
-                              },
-                              {
-                                    "from": "s_final_route_logic",
-                                    "kind": "route:5"
                               }
                         ],
                         "commonFacts": [
@@ -10751,22 +9934,18 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s37_search_slow": {
-                        "title": "慢半拍",
+                  "s36_price_bargain_first": {
+                        "title": "看不见的救援",
                         "layer": "L06_rescue_return",
-                        "inDegree": 3,
+                        "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s37_slow_from_personal_cost_feedback",
-                                    "kind": "next"
+                                    "from": "s35_return_from_paper",
+                                    "kind": "choice:0"
                               },
                               {
-                                    "from": "s37_slow_from_politics_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s37_slow_from_partial_cover_feedback",
-                                    "kind": "next"
+                                    "from": "s35_return_known",
+                                    "kind": "choice:0"
                               }
                         ],
                         "commonFacts": [
@@ -10780,14 +9959,10 @@
                   "s37_search_fast": {
                         "title": "快速追踪",
                         "layer": "L06_rescue_return",
-                        "inDegree": 4,
+                        "inDegree": 3,
                         "incoming": [
                               {
                                     "from": "s37_fast_from_personal_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s37_fast_from_politics_too_slow_feedback",
                                     "kind": "next"
                               },
                               {
@@ -10807,43 +9982,17 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s37_ten_year_guard": {
-                        "title": "Mighele 的电话",
+                  "s37_search_slow": {
+                        "title": "慢半拍",
                         "layer": "L06_rescue_return",
                         "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s36_price_bargain_first",
-                                    "kind": "choice:0"
+                                    "from": "s37_slow_from_personal_cost_feedback",
+                                    "kind": "next"
                               },
                               {
-                                    "from": "s37_partial_cover",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s38_lasvegas": {
-                        "title": "追上逃亡线",
-                        "layer": "L06_rescue_return",
-                        "inDegree": 3,
-                        "incoming": [
-                              {
-                                    "from": "s37_search_fast",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s37_search_slow",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s38_lasvegas_delayed",
+                                    "from": "s37_slow_from_partial_cover_feedback",
                                     "kind": "next"
                               }
                         ],
@@ -10925,28 +10074,6 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s42_santalucia_all": {
-                        "title": "桑塔露琪亚",
-                        "layer": "L07_record_endgame",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s41_father_words_admit",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s41_father_words_defend",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
                   "s_white_from_half_truth_feedback": {
                         "title": "少给的一半",
                         "layer": "L07_record_endgame",
@@ -10969,21 +10096,17 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s43_draft": {
-                        "title": "不好看的真话",
+                  "s42_santalucia_all": {
+                        "title": "桑塔露琪亚",
                         "layer": "L07_record_endgame",
-                        "inDegree": 3,
+                        "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s42_santalucia_all",
+                                    "from": "s41_father_words_admit",
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s42_santalucia_half",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s42_chichi_return_mia",
+                                    "from": "s41_father_words_defend",
                                     "kind": "choice:0"
                               }
                         ],
@@ -10995,21 +10118,17 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s35_return_from_paper": {
-                        "title": "回到纽约",
+                  "s35_return_route": {
+                        "title": "返家知情路线判定",
                         "layer": "L05_restaurant_news",
-                        "inDegree": 3,
+                        "inDegree": 2,
                         "incoming": [
                               {
                                     "from": "s34_florence_full_first",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s34_partial_completed_feedback",
                                     "kind": "next"
                               },
                               {
-                                    "from": "s34_partial_withheld_feedback",
+                                    "from": "s34_florence_partial_first",
                                     "kind": "next"
                               }
                         ],
@@ -11021,40 +10140,22 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s35_return_known": {
-                        "title": "回到局面",
-                        "layer": "L05_restaurant_news",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s34_florence_known_full",
-                                    "kind": "choice:0"
-                              },
-                              {
-                                    "from": "s34_florence_known_partial",
-                                    "kind": "choice:0"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s14_rose_broken": {
-                        "title": "玫瑰没有送出",
+                  "s14_rose_router": {
+                        "title": "十六岁之前",
                         "layer": "L02_house_rules",
-                        "inDegree": 2,
+                        "inDegree": 3,
                         "incoming": [
                               {
-                                    "from": "s14_rose_router_logic",
-                                    "kind": "route:1"
+                                    "from": "s12_returned_gun",
+                                    "kind": "next"
                               },
                               {
-                                    "from": "s14_rose_control",
-                                    "kind": "choice:1"
+                                    "from": "s13_chose_brother",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s13_luciano_reason",
+                                    "kind": "next"
                               }
                         ],
                         "commonFacts": [
@@ -11087,18 +10188,18 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s_no_rose_route": {
-                        "title": "空手回家",
+                  "s14_rose_broken": {
+                        "title": "玫瑰没有送出",
                         "layer": "L02_house_rules",
                         "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s_no_rose_silence_feedback",
-                                    "kind": "next"
+                                    "from": "s14_rose_router_logic",
+                                    "kind": "route:1"
                               },
                               {
-                                    "from": "s_no_rose_guard_feedback",
-                                    "kind": "next"
+                                    "from": "s14_rose_control",
+                                    "kind": "choice:1"
                               }
                         ],
                         "commonFacts": [
@@ -11195,21 +10296,65 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s15_rose_scold": {
-                        "title": "父亲转身",
-                        "layer": "L02_house_rules",
+                  "s17_truth_reaction": {
+                        "title": "补说真相",
+                        "layer": "L03_will_truth",
+                        "inDegree": 2,
+                        "incoming": [
+                              {
+                                    "from": "s17_truth_partial_heard",
+                                    "kind": "choice:0"
+                              },
+                              {
+                                    "from": "s17_misheard",
+                                    "kind": "choice:0"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s18_funeral_truth_route": {
+                        "title": "葬礼前夜",
+                        "layer": "L03_will_truth",
+                        "inDegree": 2,
+                        "incoming": [
+                              {
+                                    "from": "s17_truth_answer_name",
+                                    "kind": "next"
+                              },
+                              {
+                                    "from": "s17_truth_silence",
+                                    "kind": "next"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s19_inheritance_truth": {
+                        "title": "知道真相的午夜",
+                        "layer": "L04_inheritance_table",
                         "inDegree": 3,
                         "incoming": [
                               {
-                                    "from": "s15_rose_scold_from_late_control",
+                                    "from": "s19_shared_family",
+                                    "kind": "choice:1"
+                              },
+                              {
+                                    "from": "s18_truth_refuse_decide_feedback",
                                     "kind": "next"
                               },
                               {
-                                    "from": "s14_rose_warm_hand",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s14_rose_warm_tease",
+                                    "from": "s18_truth_survive_first_feedback",
                                     "kind": "next"
                               }
                         ],
@@ -11273,170 +10418,18 @@
                         ],
                         "preserveDifferences": []
                   },
-                  "s17_truth_reaction": {
-                        "title": "补说真相",
-                        "layer": "L03_will_truth",
+                  "s37_ten_year_guard": {
+                        "title": "Mighele 的电话",
+                        "layer": "L06_rescue_return",
                         "inDegree": 2,
                         "incoming": [
                               {
-                                    "from": "s17_truth_partial_heard",
+                                    "from": "s36_price_bargain_first",
                                     "kind": "choice:0"
                               },
                               {
-                                    "from": "s17_misheard",
+                                    "from": "s37_partial_cover",
                                     "kind": "choice:0"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s18_funeral": {
-                        "title": "葬礼之后",
-                        "layer": "L03_will_truth",
-                        "inDegree": 3,
-                        "incoming": [
-                              {
-                                    "from": "s17_truth_partial_heard",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s17_grief_before_funeral",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s17_control_before_funeral",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s19_inheritance_truth": {
-                        "title": "无从继承",
-                        "layer": "L04_inheritance_table",
-                        "inDegree": 3,
-                        "incoming": [
-                              {
-                                    "from": "s19_shared_family",
-                                    "kind": "choice:1"
-                              },
-                              {
-                                    "from": "s18_truth_refuse_decide_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s18_truth_survive_first_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s28_bridge_echo": {
-                        "title": "布鲁克林大桥",
-                        "layer": "L04_inheritance_table",
-                        "inDegree": 4,
-                        "incoming": [
-                              {
-                                    "from": "s27_flour_shell",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_ny_glance",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_hidden_locked",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s27_hidden_note",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s18_funeral_truth_route": {
-                        "title": "葬礼前夜",
-                        "layer": "L03_will_truth",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s17_truth_answer_name",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s17_truth_silence",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s19_inheritance": {
-                        "title": "五大家族来访",
-                        "layer": "L03_will_truth",
-                        "inDegree": 3,
-                        "incoming": [
-                              {
-                                    "from": "s18_legal_accept_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s18_survive_warning_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s18_shield_family_feedback",
-                                    "kind": "next"
-                              }
-                        ],
-                        "commonFacts": [
-                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
-                        ],
-                        "forbiddenAssumptions": [
-                              "Route-specific details require an explicit flag check before use."
-                        ],
-                        "preserveDifferences": []
-                  },
-                  "s27_restaurant_clean": {
-                        "title": "餐厅后厨",
-                        "layer": "L04_inheritance_table",
-                        "inDegree": 2,
-                        "incoming": [
-                              {
-                                    "from": "s26_departure_cook_feedback",
-                                    "kind": "next"
-                              },
-                              {
-                                    "from": "s26_departure_almost_feedback",
-                                    "kind": "next"
                               }
                         ],
                         "commonFacts": [
@@ -11459,6 +10452,28 @@
                               {
                                     "from": "s15_flower_language_closed",
                                     "kind": "choice:1"
+                              }
+                        ],
+                        "commonFacts": [
+                              "Multiple routes merge here; only shared facts may be narrated unconditionally."
+                        ],
+                        "forbiddenAssumptions": [
+                              "Route-specific details require an explicit flag check before use."
+                        ],
+                        "preserveDifferences": []
+                  },
+                  "s_white_from_failed_mia": {
+                        "title": "没有成立的共同署名",
+                        "layer": "L07_record_endgame",
+                        "inDegree": 2,
+                        "incoming": [
+                              {
+                                    "from": "s_final_route_logic",
+                                    "kind": "route:4"
+                              },
+                              {
+                                    "from": "s_final_route_logic",
+                                    "kind": "route:5"
                               }
                         ],
                         "commonFacts": [
@@ -11679,7 +10694,7 @@
                               "s05_dinner",
                               "s08_kitchen_truce",
                               "s07_account_book",
-                              "s_no_rose_route",
+                              "s14_rose_broken",
                               "s14_rose_control"
                         ],
                         "readAt": [
@@ -11726,6 +10741,20 @@
                         ],
                         "important": true,
                         "meaning": "told all truth",
+                        "action": "keep: route/read consumer exists"
+                  },
+                  "witnessed_gambino_shot": {
+                        "tier": "critical",
+                        "setAt": [
+                              "s22_table_pressure",
+                              "s22_table_beside"
+                        ],
+                        "readAt": [
+                              "s30_newspaper_route",
+                              "s35_return_route"
+                        ],
+                        "important": true,
+                        "meaning": "witnessed Gambino shooting",
                         "action": "keep: route/read consumer exists"
                   }
             },
@@ -11774,36 +10803,32 @@
                   "description": "听见 Luciano 对家族和 Chi Chi 的托付。"
             },
             "ach_canon_leave": {
-                  "title": "退场的人",
-                  "description": "按正史离开 Gambino 谈判桌。"
+                  "title": "谈判退场",
+                  "description": "陪 Chi Chi 赴会，在谈判正式开始时离席（游戏 IF）。"
             },
             "ach_stayed_table": {
                   "title": "留在桌边",
-                  "description": "偏离正史，留在 Gambino 谈判中。"
+                  "description": "陪 Chi Chi 赴会，并在谈判开始后留在桌边（原作线）。"
             },
             "ach_left_family": {
                   "title": "离家",
                   "description": "让 Sonnyboy 成为餐厅后厨里的普通人。"
             },
-            "ach_hidden_lines": {
-                  "title": "未寄出的号码",
-                  "description": "离家前留下紧急联系方式，却不要求任何人监视 Chi Chi。"
-            },
             "ach_stevie": {
                   "title": "卖报少年",
-                  "description": "遇见 Stepano，也发现后来的 Stevie 仍读不出报纸。"
+                  "description": "在餐厅遇见 Stepano，也就是后来的 Stevie。"
             },
             "ach_newspaper": {
                   "title": "报纸边角",
-                  "description": "在正史线上第一次读到 Chi Chi 杀 Gambino。"
+                  "description": "从 Stevie 的报纸上读到 Chi Chi 开枪后的公开后果。"
             },
             "ach_public_news": {
-                  "title": "公开危机",
-                  "description": "在已知真相后看到报纸把丑闻公之于众。"
+                  "title": "枪声在场",
+                  "description": "留在桌边，亲眼看见 Chi Chi 向 Gambino 开枪。"
             },
             "ach_florence": {
                   "title": "Florence 的质问",
-                  "description": "让 Florence 看见你仍在替家族和过去做决定。"
+                  "description": "让 Florence 读到你的信，也听见你仍要回去守护 Chi Chi。"
             },
             "ach_return": {
                   "title": "回纽约",
@@ -12173,7 +11198,7 @@
                   ]
             },
             "s05_returned_fork": {
-                  "title": "捡起叉子",
+                  "title": "点头回应",
                   "progress": 10,
                   "ambient": "none",
                   "segments": [
@@ -12187,12 +11212,12 @@
                   "next": "s08_kitchen_truce"
             },
             "s05_watched_fork": {
-                  "title": "不捡",
+                  "title": "不接试探",
                   "progress": 10,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你没有动。\nChi Chi 等了几秒，只能自己把叉子收回去。"
+                              "text": "你没有接他的试探，只拿起自己手边的叉子。\nChi Chi 等了几秒，只能把递来的那一把收回去。"
                         },
                         {
                               "text": "他似乎没有生气，只是自顾自地切肉，银器反射出锐利的光。你也从那天开始，选择了先站远一点，再决定要不要靠近。"
@@ -12298,7 +11323,7 @@
                               }
                         },
                         {
-                              "text": "合上账本，说这些不是小孩该碰的",
+                              "text": "合上账本，沉默地看着他",
                               "next": "s07_closed_books",
                               "changes": {
                                     "val": -1,
@@ -12330,14 +11355,14 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你合上账本。Chi Chi 看着你的手，像看见一扇门在他面前关上。"
+                              "text": "你合上账本。\nChi Chi 看着你的手，像看见一扇门在他面前关上。"
                         },
                         {
-                              "speaker": "Chi Chi",
-                              "text": "“那我长大以后再问。”"
+                              "text": "他看向你的眼睛，突然笑了。"
                         },
                         {
-                              "text": "他转身走出书房。你没有听出那句话里已经有了不服输。"
+                              "text": "“是我多嘴了。”\n他转身走出书房，把不服输藏得更深。",
+                              "speaker": "Chi Chi"
                         }
                   ],
                   "next": "s09_family_photo"
@@ -12358,7 +11383,7 @@
                               "text": "“你为什么和我们一起拍照？”"
                         },
                         {
-                              "text": "他说完就伸手抓乱你的头发，像小孩子非要在大人面前赢一次。你咬紧嘴唇，忽然觉得照片会把你钉在一个还不敢承认的家里。"
+                              "text": "他说完就伸手抓乱你的头发，像小孩子非要在大人面前赢一次。\n你咬紧嘴唇，忽然觉得照片会把你钉在一个还不敢承认的家里。"
                         }
                   ],
                   "choices": [
@@ -12671,139 +11696,120 @@
                   "next": "s15_flower_language"
             },
             "s18_funeral": {
-                  "title": "葬礼之后",
+                  "title": "遗言之后",
                   "progress": 45,
-                  "ambient": "none",
+                  "ambient": "sickroom",
                   "segments": [
                         {
-                              "text": "葬礼那天，旧照片被临时收进抽屉，黄玫瑰没有被摆上桌，Bocchetti 家族在一夜之间学会了怎样把伤口藏进黑色西装。"
-                        },
-                        {
-                              "text": "Chi Chi 甩开你的手，眼睛红得厉害，他没有问父亲临终前每个字的顺序，只抓住了最能伤人的那一个问题。"
+                              "text": "Luciano 的手刚刚松开，病房里还留着药味和没有说完的祷告。Chi Chi 站在床边，随后甩开你的手。"
                         },
                         {
                               "speaker": "Chi Chi",
-                              "text": "“照法律，我才是继承人，你是时候做出选择了。”"
+                              "text": "“虽然 Papa 疼爱你，但毕竟我才是亲生儿子。照法律，我才是继承人。”"
+                        },
+                        {
+                              "speaker": "你",
+                              "text": "“是的，Chi Chi。”"
+                        },
+                        {
+                              "speaker": "Chi Chi",
+                              "text": "“这么简单？那既然如此，你是不是应该做点什么？”"
+                        },
+                        {
+                              "speaker": "你",
+                              "text": "“是的，Chi Chi。家族产业应该由你继承。你才是 Papa 的亲生儿子。”"
+                        },
+                        {
+                              "text": "你没有训诫他，也没有把临终的托付说成自己接管的理由。你只是把家业交还给他，把真正的身世继续留在喉咙里。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "承认法律上应由 Chi Chi 继承",
-                              "next": "s18_legal_accept_feedback",
-                              "changes": {
-                                    "val": 2
-                              }
-                        },
-                        {
-                              "text": "提醒他先活过五大家族的下一轮试探",
-                              "next": "s18_survive_warning_feedback",
-                              "changes": {
-                                    "val": -1
-                              }
-                        },
-                        {
-                              "text": "先替他挡住局面，之后再谈继承",
-                              "next": "s18_shield_family_feedback",
-                              "changes": {
-                                    "val": -1
-                              }
-                        }
-                  ]
+                  "next": "s19_inheritance"
             },
             "s19_inheritance": {
-                  "title": "五大家族来访",
+                  "title": "午夜会面",
                   "progress": 47,
-                  "ambient": "none",
+                  "ambient": "meeting",
                   "segments": [
                         {
-                              "text": "Gambino 答应在午夜会面，请柬纸面厚得像一张小小的棺材板，上面写着敬意，背后全是试探。"
+                              "text": "Chi Chi 亲自拨通 Gambino 的电话，约他午夜到桑塔露琪亚会面。听筒放下后，他没有向你讨一句许可。"
                         },
                         {
-                              "text": "Chi Chi 把请柬捏得很紧，像终于等到所有人承认他也是 Bocchetti。\n你知道这不是承认，是称重，Luciano 死后，每个人都想看看这栋房子会先从哪根梁柱塌。"
+                              "text": "午夜，你陪他走进桑塔露琪亚。赌厅里的桌椅已经摆好，Gambino 的车也已经停在门外；这一次，你不会让 Chi Chi 独自走到桌边。"
                         },
                         {
-                              "speaker": "Chi Chi",
-                              "text": "“你要站在我旁边，还是站在我前面？”"
+                              "text": "真正要决定的，是当 Gambino 落座、谈判正式开始时，你是否还留在那里。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "把谈判位置让给 Chi Chi，然后退场",
+                              "text": "陪他走到桌边；谈判正式开始时离开",
                               "next": "s20_canon_leave_table",
                               "changes": {
-                                    "val": 3,
-                                    "unlockAchievement": "ach_canon_leave"
+                                    "val": -1,
+                                    "unlockAchievements": [
+                                          "ach_canon_leave",
+                                          "ach_left_family"
+                                    ]
                               }
                         },
                         {
-                              "text": "留在桌边，由你压住 Gambino 的试探",
+                              "text": "陪他走到桌边；谈判开始后仍留下，但不替他开口",
                               "next": "s22_table_pressure",
                               "changes": {
-                                    "val": -1,
+                                    "val": 3,
                                     "unlockAchievement": "ach_stayed_table"
                               }
                         }
                   ]
             },
             "s20_canon_leave_table": {
-                  "title": "退场",
+                  "title": "谈判开始时离席",
                   "progress": 52,
-                  "ambient": "none",
+                  "ambient": "meeting",
                   "segments": [
                         {
-                              "text": "午夜的桑塔露琪亚，Gambino 进门后先看向你，才敷衍地转向 Chi Chi，你推开椅背，把谈判位置让出来。"
+                              "text": "Gambino 进门先看向你，像屋里只有一个值得谈条件的人。你没有应声，只侧身让他看见 Chi Chi。"
                         },
                         {
-                              "text": "Chi Chi 没有谢你，他只是坐下，把背挺得很直，直得像不肯让任何人看见他其实还在发抖。"
+                              "text": "Chi Chi 第二次报上姓名，Gambino 才敷衍地转过去。椅脚擦过地面，第一句条件就要出口。"
                         },
                         {
-                              "text": "门在你身后合上。\n你没有听见后来的羞辱，也没有看见 Chi Chi 的手摸向枪。这才是最干净、也最残忍的离开：你把舞台交给他，也把危险交给他。"
+                              "text": "“今晚由他和你谈。”你等到谈判正式开始才离席。后来的羞辱、枪声和血，你都没有亲眼看见。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "回房收拾行李，立刻离开家族",
-                              "next": "s26_departure_open",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_left_family"
-                              }
-                        },
-                        {
-                              "text": "离开前只给 Las Vegas 的联络人 Mighele 留下你的紧急号码，不要求回报",
-                              "next": "s26_departure_hidden",
-                              "changes": {
-                                    "val": 1,
-                                    "unlockAchievement": "ach_hidden_lines"
-                              }
-                        }
-                  ]
+                  "next": "s26_departure_open"
             },
             "s22_table_pressure": {
-                  "title": "桌边",
+                  "title": "桌边的沉默",
                   "progress": 52,
-                  "ambient": "none",
+                  "ambient": "meeting",
                   "segments": [
                         {
-                              "text": "你没有退场。Gambino 落座时，Chi Chi 的笑僵在脸上。你知道自己留下来的那一刻，就已经夺走了他想证明自己的机会。"
+                              "text": "Gambino 进门先看向你，像屋里只有一个值得谈条件的人。你没有应声，只侧身让他看见 Chi Chi。"
                         },
                         {
-                              "text": "Gambino 的话越来越脏。Chi Chi 的手摸到枪，眼睛却先看向你。"
+                              "text": "Chi Chi 第二次报上姓名，Gambino 才敷衍地转过去。你留在桌边，却没有替 Chi Chi 接过第一句话。"
                         },
                         {
-                              "text": "这一次，你不能说自己不知道。"
+                              "text": "Gambino 的话越来越脏。Chi Chi 的手摸向枪，眼睛却先看向你。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "放手，让他自己承担这一枪",
+                              "text": "继续沉默，相信 Chi Chi 会自己回应",
                               "next": "s23_known_after_shot",
                               "changes": {
-                                    "val": -1
+                                    "val": 2,
+                                    "addFlag": "witnessed_gambino_shot",
+                                    "important": true,
+                                    "unlockAchievements": [
+                                          "ach_public_news",
+                                          "ach_left_family"
+                                    ]
                               }
                         },
                         {
-                              "text": "抢在 Chi Chi 前接管谈判，把 Gambino 压回椅子上",
+                              "text": "在他摸到枪前打断 Gambino，接过谈判",
                               "next": "s33_stay_family_takeover",
                               "changes": {
                                     "val": -2
@@ -12817,25 +11823,31 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你陪 Chi Chi 进了赌厅，却没有替他坐到前面。你的椅子停在他侧旁，近到能伸手，远到足够让所有人看见这句话由他自己说出口。"
+                              "text": "你陪 Chi Chi 进了赌厅。Gambino 先看向你，你没有应声，只侧身让他看见 Chi Chi。"
                         },
                         {
-                              "text": "Gambino 很快看懂了这个位置。他不只羞辱 Chi Chi，也把每一句话都往你们之间递，像要确认所谓并肩到底能撑多久。"
+                              "text": "Chi Chi 第二次报上姓名，Gambino 才敷衍地转过去。你留在他侧旁，近到能伸手，却没有替他开口。"
                         },
                         {
-                              "text": "Chi Chi 先开口，声音不稳，但没有退。直到 Gambino 提到 Luciano 留下的椅子，他的手才慢慢摸向枪。"
+                              "text": "Gambino 不只羞辱 Chi Chi，也把每一句话都往你们之间递。直到他提起 Luciano，Chi Chi 的手才慢慢摸向枪。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "继续把话语权留给 Chi Chi，等他自己承担后果",
+                              "text": "继续沉默，相信 Chi Chi 会自己回应",
                               "next": "s23_known_after_shot",
                               "changes": {
-                                    "val": 2
+                                    "val": 2,
+                                    "addFlag": "witnessed_gambino_shot",
+                                    "important": true,
+                                    "unlockAchievements": [
+                                          "ach_public_news",
+                                          "ach_left_family"
+                                    ]
                               }
                         },
                         {
-                              "text": "接过话头，把谈判从他手里拿回来",
+                              "text": "在他摸到枪前打断 Gambino，接过谈判",
                               "next": "s33_stay_family_takeover",
                               "changes": {
                                     "val": -1
@@ -12844,260 +11856,142 @@
                   ]
             },
             "s23_known_after_shot": {
-                  "title": "血迹旁边",
+                  "title": "枪声之后的“好”",
                   "progress": 54,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "血味来得很快。你让人封住后门，把 Gambino 的人一个个隔开，又在 Chi Chi 抬头前把枪从他手里拿走。"
+                              "text": "Gambino 把羞辱一路递到 Luciano 的名字上。Chi Chi 的手终于摸到枪；枪声落下时，你站在桌边，看着 Gambino 倒进刚才还不肯正眼看他的椅子旁。"
                         },
                         {
-                              "speaker": "Chi Chi",
-                              "text": "“别用那种眼神看我。”"
+                              "text": "回到家后，Chi Chi 宣布家族从今往后按他的方式运转。他看着你，话只说到一半：“决定吧，是要离开家族，还是——”"
                         },
                         {
-                              "text": "你想说你没有。可你的沉默已经像审判。你知道这一枪会把纽约所有旧账都叫醒，也知道你再也不能假装自己只是旁观。"
+                              "speaker": "你",
+                              "text": "“好。”"
+                        },
+                        {
+                              "text": "“什么？”Chi Chi 像没想到你会答得这样快。你没有等他把后半句说完，只转身回房收拾行李。临出门时，你提着箱子对他说了一句“保重”，把 Family Business 留给了他。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "先送走 Chi Chi，再面对公开丑闻",
-                              "next": "s35_public_news_known",
-                              "changes": {
-                                    "val": 2
-                              }
-                        },
-                        {
-                              "text": "留下来稳住五大家族，把离家推迟",
-                              "next": "s33_from_after_shot_feedback",
-                              "changes": {
-                                    "val": -1
-                              }
-                        }
-                  ]
-            },
-            "s33_from_after_shot_feedback": {
-                  "title": "血迹之后",
-                  "progress": 58,
-                  "segments": [
-                        {
-                              "text": "你亲手处理了血迹，也亲眼看见 Chi Chi 如何被那一枪拖进追杀。留下来不是冷静选择，而是你把补救和控制缠在了一起。"
-                        }
-                  ],
-                  "next": "s33_stay_family_known"
+                  "next": "s27_restaurant_clean"
             },
             "s26_departure_open": {
-                  "title": "保重",
-                  "progress": 52,
+                  "title": "在他回来之前",
+                  "progress": 54,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你提着箱子走到门口。\nChi Chi 没有追出来，你也没有回头。"
+                              "text": "离开桑塔露琪亚后，你先回房收拾行李。能装进箱子的东西不多，真正沉的都不在衣柜里。"
                         },
                         {
-                              "text": "赌厅里发生了什么，你不知道，你只知道自己终于把 Bocchetti 这个姓留在身后。"
-                        },
-                        {
-                              "text": "这份无知后来会成为你最痛恨自己的证据。"
+                              "text": "你在 Chi Chi 回来以前走出家门。门厅没有人问你去哪里，也没有人来得及挽留；你把 Bocchetti 这个姓留在身后，去布鲁克林找一份只需要面粉和炉火的工作。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "去布鲁克林餐厅，做一个普通厨子",
-                              "next": "s26_departure_cook_feedback",
-                              "changes": {
-                                    "val": 3
-                              }
-                        },
-                        {
-                              "text": "半路折回一次，却最终没有敲门",
-                              "next": "s26_departure_almost_feedback",
-                              "changes": {
-                                    "val": 1
-                              }
-                        }
-                  ]
-            },
-            "s26_departure_hidden": {
-                  "title": "未寄出的号码",
-                  "progress": 52,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "离开前，你把自己的号码留给 Mighele。你只说，如果 Bocchetti 家有人必须立刻撤离，就用它联系你。"
-                        },
-                        {
-                              "text": "你没有让他汇报 Chi Chi 的行踪，也没有约定定期联系。这个号码只在真正出事时使用，不是让 Mighele 替你看着他。"
-                        }
-                  ],
-                  "next": "s27_restaurant_hidden"
+                  "next": "s27_restaurant_clean"
             },
             "s27_restaurant_clean": {
-                  "title": "餐厅后厨",
-                  "progress": 55,
+                  "chapterTitle": "第四幕：餐厅后厨",
+                  "title": "披萨 Florence",
+                  "progress": 56,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "布鲁克林餐厅的后厨热得像另一个世界。你揉面、撒粉、把番茄酱抹开，第一次发现手上沾满面粉时，枪油味真的会远一点。"
+                              "text": "离开家族后，你在布鲁克林一家意大利餐厅当厨子。后厨的炉火、面粉和番茄酱，让枪油味一点点退到记忆深处。"
                         },
                         {
-                              "text": "你在送餐时认识了 Florence，一位暂居纽约的英国姑娘。她后来偶尔坐在靠窗的位置看你烤披萨，会笑你把一道披萨取名得太郑重，也会认真尝第一口，说这比许多宴会上的菜都好。"
+                              "text": "Florence 已经认识你，也知道你有一段不肯碰的过去。她没有把每一次快乐都变成盘问；有一阵子，你是真的在她的笑声里短暂活过。"
                         },
                         {
-                              "text": "她知道你有一段不肯碰的过去，却没有把每一次快乐都变成盘问。那段日子里，你并不是一直痛苦；你是真的在炉火和她的笑声里短暂活过。"
+                              "text": "这天，你揉开面团，铺上馅料，把新做的披萨叫作“披萨 Florence”。披萨出炉时，你端着烤盘转身，才注意到门后露出一截报纸边角。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "把自己完全藏进后厨和面粉里",
-                              "next": "s27_flour_shell",
-                              "changes": {
-                                    "val": 2
-                              }
-                        },
-                        {
-                              "text": "偶尔望向纽约方向，但不派人打听",
-                              "next": "s27_ny_glance",
-                              "changes": {
-                                    "val": 1
-                              }
-                        }
-                  ]
-            },
-            "s27_restaurant_hidden": {
-                  "title": "没有回报的后厨",
-                  "progress": 55,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "你到了布鲁克林餐厅。电话始终没有响起，至少 Mighele 没有因为 Chi Chi 打来。你只能像真正离开的人那样，对纽约后来发生的事一无所知。"
-                        },
-                        {
-                              "text": "你在送餐时认识了 Florence，一位暂居纽约的英国姑娘。她后来常坐在靠窗的位置，看你揉面、切披萨。她看得出你还留着一张退路，却没有把每一次快乐都变成盘问。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "不再为这件事主动联系 Mighele",
-                              "next": "s27_hidden_locked",
-                              "changes": {
-                                    "val": 2
-                              }
-                        },
-                        {
-                              "text": "再补一句：不要替我盯着他",
-                              "next": "s27_hidden_note",
-                              "changes": {
-                                    "val": 2
-                              }
-                        }
-                  ]
+                  "next": "s28_bridge_echo"
             },
             "s28_bridge_echo": {
-                  "chapterTitle": "第四幕：餐厅后厨",
-                  "title": "布鲁克林大桥",
+                  "title": "门后的报童",
                   "progress": 58,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "布鲁克林大桥下，Florence 被风吹乱帽檐。Stevie 收下她递来的零钱，看见她提到你的名字时眼睛亮了一下。"
+                              "text": "不久前，Florence 在布鲁克林大桥边喊过你的名字。收下她零钱的报童记住了那两个字，又一路跟到餐厅。"
                         },
                         {
-                              "text": "他一路跟到餐厅，只是因为好奇：一个能让 Florence 停下脚步的名字，会拥有怎样的一双眼睛。"
+                              "text": "现在，他躲在门后，眼睛越过报纸直盯着刚出炉的披萨。你放下烤盘，没有先把食物递过去。"
                         },
                         {
-                              "text": "你在炉前转身时，看见门后露出一截报纸边角，还有一个饿得盯住披萨的孩子。"
+                              "speaker": "你",
+                              "text": "“谁？你在那儿干什么？谁派你来的？”"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "把一块披萨放到门边，退开两步等他自己出来",
-                              "next": "s29_stevie_caught",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_stevie"
-                              }
-                        },
-                        {
-                              "text": "把披萨留在炉边，转身堵住出口，先确认他没有武器",
-                              "next": "s29_stevie_questioned",
-                              "changes": {
-                                    "val": 1,
-                                    "unlockAchievement": "ach_stevie"
-                              }
-                        }
-                  ]
+                  "next": "s29_stevie_questioned"
             },
-            "s29_stevie_caught": {
-                  "title": "先递披萨",
+            "s29_stevie_questioned": {
+                  "title": "号外",
                   "progress": 60,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你把披萨放到门边，退开两步。报童盯了你一会儿，终于从门后出来，先抓起披萨，才记得把报纸护在胸前。"
+                              "speaker": "报童",
+                              "text": "“没人派我。我是孤儿，靠卖报纸过活。”"
                         },
                         {
-                              "text": "“你不抓我？”",
-                              "speaker": "报童"
-                        },
-                        {
-                              "text": "你摇头，让他先吃。这个顺序没有让他立刻信任你，却让他愿意在吃完前留下。"
+                              "text": "他把报纸举得更高，叫卖今天的号外。你问出了什么事，他只催你先买；你接过报纸时，发现他的目光始终跟着你的手，而不是纸上的字。"
                         }
                   ],
-                  "next": "s30_newspaper_first"
+                  "next": "s30_newspaper_route"
+            },
+            "s30_newspaper_route": {
+                  "title": "报纸知情路线判定",
+                  "progress": 61,
+                  "ambient": "none",
+                  "routes": [
+                        {
+                              "condition": {
+                                    "flag": "witnessed_gambino_shot"
+                              },
+                              "next": "s35_public_news_known"
+                        },
+                        {
+                              "condition": "default",
+                              "next": "s30_newspaper_first"
+                        }
+                  ]
             },
             "s30_newspaper_first": {
-                  "title": "拿反的报纸",
+                  "title": "报纸上的枪声",
                   "progress": 62,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "报童一边吃披萨，一边把报纸挡在胸前。你问他今天有什么新闻，他立刻把纸举高，报头却倒了过来。"
+                              "text": "你把报纸转正，看了看报童躲闪的眼睛：“你不识字吧？”他没有回答。"
                         },
                         {
-                              "text": "“先买。买了我再告诉你。”",
-                              "speaker": "报童"
+                              "text": "你只好替他读出号外：Chi Chi Bocchetti 杀死了 Gambino 家族的老大；Gambino 家族扬言血债血偿。"
                         },
                         {
-                              "text": "标题里印着 Chi Chi 的名字，报童的目光却总从字行旁边滑开。你一时分不清他是在躲你，还是根本读不懂。你可以先问他的名字，也可以先把标题念给他听。"
+                              "text": "直到这一刻，你才知道自己离席后发生了什么。油墨把那一枪送进餐厅，也把你以为已经关上的门重新推开。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "先问他的名字，再一起读那张报纸",
-                              "next": "s31_chichi_news_first",
-                              "changes": {
-                                    "val": 3,
-                                    "unlockAchievement": "ach_newspaper"
-                              }
-                        },
-                        {
-                              "text": "先读出标题，再问他为什么把报纸拿反",
-                              "next": "s31_headline_first",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_newspaper"
-                              }
-                        }
-                  ]
+                  "next": "s31_chichi_news_first"
             },
             "s31_chichi_news_first": {
-                  "title": "先问名字",
+                  "title": "Stepano，也可以叫 Stevie",
                   "progress": 64,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "“我叫 Stepano。也可以叫我 Stevie。”",
-                              "speaker": "报童"
+                              "text": "读完报纸，你才问他叫什么。"
                         },
                         {
-                              "text": "你把报纸摊到他面前，指着标题逐字读给他听。他的视线跟着你的手移动，你这才确认他不是滑头，是真的不识字。"
+                              "speaker": "报童",
+                              "text": "“Stepano。你也可以叫我 Stevie。”"
                         },
                         {
-                              "text": "标题说 Chi Chi 杀了 Gambino 的儿子，正在被追杀。每个字都很干，干得像没有人知道那个名字曾经在厨房里分过半块面包。"
+                              "text": "你把“披萨 Florence”递给他。他先问是不是给自己的，得到肯定后才咬下第一口。"
                         },
                         {
-                              "text": "直到这一刻，你才知道离开的门后发生了什么。Stevie 看着你的脸色，等一个大人承认自己看见了他，也看见了报纸上的人。"
+                              "text": "你问他认不认识布鲁克林大桥边的那位小姐。Stevie 点头。于是你抽出信纸，把送信的任务交给了他。"
                         }
                   ],
                   "next": "s32_letter_to_florence_first"
@@ -13108,96 +12002,53 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你在餐厅后门写信。Stevie 蹲在台阶上等，手里还攥着那张他读不出的报纸。你曾想先独自消化消息，可 Chi Chi 的名字被油墨印得太重，沉默只会把时间继续交给追兵。"
+                              "text": "你立刻在餐厅后门写信。Stevie 蹲在台阶上等，手里还拿着那张他读不出的报纸。"
                         },
                         {
-                              "text": "Florence 曾给过你许多不过问的余地。可 Bocchetti、Luciano、Chi Chi，这些名字一旦写下去，就不会再只是你的旧伤。"
+                              "text": "信一定会送出去。你真正要决定的，不是要不要回去守护 Chi Chi，而是是否又替 Florence 决定她该怎样面对你的离开。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "把来龙去脉写全，让 Florence 有资格生气",
+                              "text": "只写自己必须回去救 Chi Chi，请 Florence 来听你亲口说明",
                               "next": "s34_florence_full_first",
                               "changes": {
-                                    "val": 4
+                                    "val": 4,
+                                    "unlockAchievements": [
+                                          "ach_stevie",
+                                          "ach_newspaper"
+                                    ]
                               }
                         },
                         {
-                              "text": "只写 Chi Chi 的危急，不写你离家的软弱",
+                              "text": "把信写成告别，请 Florence 忘了你，把她留在家族的黑夜之外",
                               "next": "s34_florence_partial_first",
                               "changes": {
-                                    "val": -1
-                              }
-                        },
-                        {
-                              "text": "不写信，先召集旧线清算 Gambino",
-                              "next": "s32_revenge_first_feedback",
-                              "changes": {
-                                    "val": -5,
-                                    "unlockAchievement": "ach_late"
+                                    "val": -1,
+                                    "unlockAchievements": [
+                                          "ach_stevie",
+                                          "ach_newspaper"
+                                    ]
                               }
                         }
                   ]
             },
             "s35_public_news_known": {
-                  "title": "公开的报纸",
-                  "progress": 61,
+                  "title": "公开的血债",
+                  "progress": 62,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "几天后，报纸把赌厅里的血写成了公共丑闻。你已经知道 Chi Chi 开枪，报纸没有给你真相，只给了你倒计时。"
+                              "text": "你把报纸转正，看了看报童躲闪的眼睛：“你不识字吧？”他没有回答。"
                         },
                         {
-                              "text": "手下把报纸放到你桌上时，不敢抬头。你接过那张纸，第一次觉得公开的字比现场的血更难擦掉。"
+                              "text": "你替他读出号外：Chi Chi Bocchetti 杀死了 Gambino 家族的老大；Gambino 家族扬言血债血偿。"
+                        },
+                        {
+                              "text": "你亲眼见过那一枪，报纸没有告诉你真相，却告诉你追杀已经公开。赌厅里的血成了全纽约都能买到的倒计时。"
                         }
                   ],
-                  "choices": [
-                        {
-                              "text": "写信向 Florence 说明你亲眼见过的部分",
-                              "next": "s34_florence_known_full",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_public_news"
-                              }
-                        },
-                        {
-                              "text": "不写细节，只让 Florence 远离纽约",
-                              "next": "s34_florence_known_partial",
-                              "changes": {
-                                    "val": -1,
-                                    "unlockAchievement": "ach_public_news"
-                              }
-                        }
-                  ]
-            },
-            "s33_stay_family_known": {
-                  "title": "留在王座旁",
-                  "progress": 69,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "你留下来处理血迹、请柬、价码、每一份等着签字的协议，以及每一张等着你表态的脸。那条通往普通生活的岔路从此在你身后合上。"
-                        },
-                        {
-                              "text": "Chi Chi 没有立刻被送走。他留在桑塔露琪亚的边缘，不能坐到最危险的位置，却也还没有被锁进任何一间安全屋。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "继续清洗账本，给他留一条能离开谈判桌的路",
-                              "next": "s_stay_family_pressure",
-                              "changes": {
-                                    "val": -1
-                              }
-                        },
-                        {
-                              "text": "把 Chi Chi 送到安全屋，自己留下扛住价码",
-                              "next": "s_stay_family_chichi_distance",
-                              "changes": {
-                                    "val": -2
-                              }
-                        }
-                  ]
+                  "next": "s31_chichi_news_first"
             },
             "s33_stay_family_takeover": {
                   "title": "接管谈判",
@@ -13233,12 +12084,12 @@
                   ]
             },
             "s35_return_from_paper": {
-                  "title": "回到纽约",
+                  "title": "重返桑塔露琪亚",
                   "progress": 72,
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你回到纽约时，桑塔露琪亚的灯还亮着。Gambino 的人等着血债血偿，五大家族等着看 Bocchetti 会不会散架。"
+                              "text": "你重返桑塔露琪亚时，赌厅的灯还亮着。Gambino 的人等着血债血偿，五大家族等着看 Bocchetti 会不会散架。"
                         },
                         {
                               "text": "Chi Chi 在报纸上，没有在你面前。你终于明白：救下他、见到他、把他带回家，可能是三件完全不同的事。"
@@ -13250,7 +12101,10 @@
                               "next": "s36_price_bargain_first",
                               "changes": {
                                     "val": 3,
-                                    "unlockAchievement": "ach_return"
+                                    "unlockAchievements": [
+                                          "ach_return",
+                                          "ach_florence"
+                                    ]
                               }
                         },
                         {
@@ -13258,7 +12112,10 @@
                               "next": "s36_price_save_first",
                               "changes": {
                                     "val": 2,
-                                    "unlockAchievement": "ach_return"
+                                    "unlockAchievements": [
+                                          "ach_return",
+                                          "ach_florence"
+                                    ]
                               }
                         }
                   ]
@@ -13269,28 +12126,33 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "你带着已经知道的血迹重新坐回局面里。报纸把事情写成一场供人围观的黑帮丑闻，只有你知道那一枪之前有多少年没说出口的话。"
+                              "text": "你带着亲眼见过的血迹重新坐回桑塔露琪亚的局面里。报纸把事情写成供人围观的黑帮丑闻，只有你知道那一枪之前有多少年没说出口的话。"
                         },
                         {
-                              "text": "家族要你压住消息，Gambino 要你付出价码，Chi Chi 却不在任何一张谈判桌上。"
-                        },
-                        {
-                              "text": "你终于明白：如果你又先救局面，他会再次变成局面的一部分。"
+                              "text": "家族要你压住消息，Gambino 的人要血债，Chi Chi 却不在任何一张谈判桌上。你必须决定由谁抢在追兵前找到他。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "先救 Chi Chi，再清理公开丑闻",
-                              "next": "s36_price_save_known",
+                              "text": "留在纽约稳住局面，安排 Mighele 和 Paulo 抢在追兵前救下 Chi Chi",
+                              "next": "s36_price_bargain_first",
                               "changes": {
-                                    "val": 3
+                                    "val": 3,
+                                    "unlockAchievements": [
+                                          "ach_return",
+                                          "ach_florence"
+                                    ]
                               }
                         },
                         {
-                              "text": "先压住报纸和警方，避免家族崩盘",
-                              "next": "s36_price_politics_known",
+                              "text": "不等局面收束，亲自沿逃亡线追查 Chi Chi",
+                              "next": "s36_price_save_known",
                               "changes": {
-                                    "val": -1
+                                    "val": 2,
+                                    "unlockAchievements": [
+                                          "ach_return",
+                                          "ach_florence"
+                                    ]
                               }
                         }
                   ]
@@ -13443,37 +12305,6 @@
                   ],
                   "next": "s_white_route"
             },
-            "s_room_check": {
-                  "title": "远程安排",
-                  "progress": 72,
-                  "ambient": "office",
-                  "segments": [
-                        {
-                              "text": "你听进 Florence 的提醒，没有把救人立刻等同于冲到 Chi Chi 面前。你回到纽约，先把桑塔露琪亚的灯点起来，再把 Mighele 和 Paulo 叫进办公室。"
-                        },
-                        {
-                              "text": "这不是更温柔的选择。你只是承认自己一旦亲自追去 Las Vegas，纽约就会空出一个足够让 Gambino 咬住的缺口。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "安排他们救下 Chi Chi，而你留在纽约稳住局面",
-                              "next": "s36_price_bargain_first",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_return"
-                              }
-                        },
-                        {
-                              "text": "只让旧线探听消息，继续把手缩回来",
-                              "next": "s_late_route",
-                              "changes": {
-                                    "val": -5,
-                                    "unlockAchievement": "ach_late"
-                              }
-                        }
-                  ]
-            },
             "s_final_route": {
                   "title": "封面",
                   "progress": 99,
@@ -13486,7 +12317,7 @@
                   "next": "s_final_route_logic"
             },
             "s_final_route_logic": {
-                  "title": "封面",
+                  "title": "结局路线判定",
                   "progress": 99,
                   "ambient": "none",
                   "routes": [
@@ -13754,7 +12585,7 @@
                         },
                         {
                               "speaker": "你",
-                              "text": "“救下他。让所有人相信他已经死了。”"
+                              "text": "“抢在追兵前救下他。别让 Gambino 的人先找到他。”"
                         }
                   ],
                   "choices": [
@@ -13802,55 +12633,6 @@
                               }
                         }
                   ]
-            },
-            "s36_price_politics_known": {
-                  "title": "先压丑闻",
-                  "progress": 74,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "你先压住报纸和警方。家族暂时没有塌，但 Chi Chi 的名字已经在每个电话里被重复贩卖。"
-                        },
-                        {
-                              "text": "你知道自己又一次选择了秩序，只是不确定这次还来不来得及补救。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "动用政治线换取 Mighele 的情报",
-                              "next": "s37_slow_from_politics_feedback",
-                              "changes": {
-                                    "val": 1
-                              }
-                        },
-                        {
-                              "text": "发现时间不够，立刻改派人手救援",
-                              "next": "s37_fast_from_politics_too_slow_feedback",
-                              "changes": {
-                                    "val": -1
-                              }
-                        }
-                  ]
-            },
-            "s37_fast_from_politics_too_slow_feedback": {
-                  "title": "来不及的政治",
-                  "progress": 77,
-                  "segments": [
-                        {
-                              "text": "政治线太慢。你终于承认，再漂亮的秩序也不能替一个正在逃亡的人争回半小时。"
-                        }
-                  ],
-                  "next": "s37_search_fast"
-            },
-            "s37_slow_from_politics_feedback": {
-                  "title": "政治线索",
-                  "progress": 76,
-                  "segments": [
-                        {
-                              "text": "你先压住报纸和警方，再用政治线换消息。线索因此带着价码来，每一条都提醒你：秩序从来不免费。"
-                        }
-                  ],
-                  "next": "s37_search_slow"
             },
             "s37_search_fast": {
                   "title": "快速追踪",
@@ -14202,167 +12984,65 @@
                   ]
             },
             "s34_florence_full_first": {
-                  "title": "完整信件",
+                  "title": "当面说明",
                   "progress": 68,
                   "ambient": "rain",
                   "segments": [
                         {
-                              "text": "Florence 收到信后，当晚就来了餐厅。她没有哭，也没有提高声音，只把信摊在你和 Stevie 面前。"
-                        },
-                        {
-                              "speaker": "Florence",
-                              "text": "“我知道你有过去，Sonnyboy。我只是不想每一次快乐都从你的伤口开始。”"
+                              "text": "Stevie 把信送到布鲁克林大桥边。Florence 正在写自己的信；看完你的字，她手里的纸落到地上，随即转身跑向餐厅。"
                         },
                         {
                               "speaker": "你",
-                              "text": "“Chi Chi 会死。”"
+                              "text": "“我答应过 Papa 要守着 Chi Chi。现在他被追杀，我不能让他死。”"
                         },
                         {
                               "speaker": "Florence",
-                              "text": "“那你回去。但别再假装这是他们把你拖回去。”"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "承认自己逃得不干净，但还是要回去救 Chi Chi",
-                              "next": "s35_return_from_paper",
-                              "changes": {
-                                    "val": 4,
-                                    "unlockAchievement": "ach_florence"
-                              }
+                              "text": "“我不愿意看你重新回到那片黑夜里。”"
                         },
                         {
-                              "text": "不亲自追到 Las Vegas，回纽约远程安排救援",
-                              "next": "s_room_check",
-                              "changes": {
-                                    "val": 1,
-                                    "unlockAchievement": "ach_florence"
-                              }
+                              "text": "你没有说这是为了她，也没有替她决定该不该等。你只承认回去是自己的选择，然后转身去履行那个承诺。"
                         }
-                  ]
+                  ],
+                  "next": "s35_return_route"
             },
             "s34_florence_partial_first": {
-                  "title": "半封信",
+                  "title": "告别信",
                   "progress": 68,
                   "ambient": "rain",
                   "segments": [
                         {
-                              "text": "Florence 收到的是半封信。纸上只剩危急、地址和几句被你修剪过的解释，每个名字都像从伤口边缘擦过去。"
-                        },
-                        {
-                              "text": "她来到餐厅时，Stevie 正坐在角落吃冷掉的披萨。她看了他一眼，又看向你。"
+                              "text": "Stevie 把信送到布鲁克林大桥边。Florence 看完那封告别信，丢下自己正在写的纸，追到餐厅来找你。"
                         },
                         {
                               "speaker": "Florence",
-                              "text": "“你不是怕我知道你有过去。你是怕我知道你还在替那段过去做决定。”"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "补全真相，然后回纽约救 Chi Chi",
-                              "next": "s34_partial_completed_feedback",
-                              "changes": {
-                                    "val": 3,
-                                    "unlockAchievement": "ach_florence"
-                              }
+                              "text": "“你说要把我留在黑夜之外，可你只是又替我决定了怎样才算幸福。”"
                         },
                         {
-                              "text": "仍然只说危急，请她不要跟来",
-                              "next": "s34_partial_withheld_feedback",
-                              "changes": {
-                                    "val": -1,
-                                    "unlockAchievement": "ach_florence"
-                              }
+                              "speaker": "你",
+                              "text": "“没有我，你会过得更好。忘了我吧。”"
+                        },
+                        {
+                              "text": "她没有接受这句替她做出的回答。你也没有因此停下；Chi Chi 正被追杀，你仍选择回去守护他。"
+                        }
+                  ],
+                  "next": "s35_return_route"
+            },
+            "s35_return_route": {
+                  "title": "返家知情路线判定",
+                  "progress": 71,
+                  "ambient": "none",
+                  "routes": [
+                        {
+                              "condition": {
+                                    "flag": "witnessed_gambino_shot"
+                              },
+                              "next": "s35_return_known"
+                        },
+                        {
+                              "condition": "default",
+                              "next": "s35_return_from_paper"
                         }
                   ]
-            },
-            "s34_florence_known_full": {
-                  "title": "已知真相的质问",
-                  "progress": 68,
-                  "ambient": "rain",
-                  "segments": [
-                        {
-                              "text": "Florence 读完信，赶到桑塔露琪亚的后门。雨水顺着她的帽檐往下滴，她却没有先擦。"
-                        },
-                        {
-                              "speaker": "Florence",
-                              "text": "“所以你不是被消息拖回去的。你一直在场。”"
-                        },
-                        {
-                              "text": "那几个被你省下的小时，此刻全都摊在办公室桌面上。你想找一句能站得住脚的解释，却发现每个字都太晚。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "承认自己在场，立刻补救",
-                              "next": "s35_return_known",
-                              "changes": {
-                                    "val": 3,
-                                    "unlockAchievement": "ach_florence"
-                              }
-                        },
-                        {
-                              "text": "把 Florence 留在身后，优先压住家族丑闻",
-                              "next": "s33_from_florence_full_feedback",
-                              "changes": {
-                                    "val": -2
-                              }
-                        }
-                  ]
-            },
-            "s33_from_florence_full_feedback": {
-                  "title": "Florence 的质问之后",
-                  "progress": 69,
-                  "segments": [
-                        {
-                              "text": "你把 Florence 留在身后时，已经不能再假装自己只是事后补救。你选择先压住家族丑闻，也选择把她手里的完整质问暂时锁在门外。"
-                        }
-                  ],
-                  "next": "s33_stay_family_known"
-            },
-            "s34_florence_known_partial": {
-                  "title": "避开的细节",
-                  "progress": 68,
-                  "ambient": "rain",
-                  "segments": [
-                        {
-                              "text": "Florence 带着那句“别来纽约”推开桑塔露琪亚的后门。信纸被她攥皱，边角还沾着雨。"
-                        },
-                        {
-                              "speaker": "Florence",
-                              "text": "“你不是怕我危险。你是怕我看见你在危险里是什么样子。”"
-                        },
-                        {
-                              "text": "你没有立刻回答。走廊尽头的灯在你背后亮着，纽约却已经从她手里的信纸上逼到面前。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "承认自己隐瞒，立刻补救",
-                              "next": "s35_return_known",
-                              "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_florence"
-                              }
-                        },
-                        {
-                              "text": "继续不说细节，先保住家族名声",
-                              "next": "s33_from_florence_partial_feedback",
-                              "changes": {
-                                    "val": -2
-                              }
-                        }
-                  ]
-            },
-            "s33_from_florence_partial_feedback": {
-                  "title": "避开的细节之后",
-                  "progress": 69,
-                  "segments": [
-                        {
-                              "text": "你继续不说细节。Florence 没有拦你，只是把那封信重新折好；你知道她已经看懂了，沉默有时比揭穿更难听。"
-                        }
-                  ],
-                  "next": "s33_stay_family_known"
             },
             "s14_rose_router": {
                   "title": "十六岁之前",
@@ -14379,7 +13059,7 @@
                   "next": "s14_rose_router_logic"
             },
             "s14_rose_router_logic": {
-                  "title": "十六岁之前",
+                  "title": "玫瑰路线判定",
                   "progress": 28,
                   "ambient": "none",
                   "routes": [
@@ -14481,17 +13161,17 @@
                   "ambient": "none",
                   "segments": [
                         {
-                              "text": "生日当天，你带着黄玫瑰走到院子，却在 Chi Chi 抬头时把花藏到身后。他看见你空着的手，等了一会儿。"
+                              "text": "生日当天，你带着黄玫瑰走到院子，却在 Chi Chi 抬头时把花藏到身后。"
                         },
                         {
                               "speaker": "Chi Chi",
-                              "text": "“还有事吗？”"
+                              "text": "“你来这里干什么？”"
                         },
                         {
-                              "text": "你想起巷口那把被你塞回他手里的枪，黄玫瑰似乎已经太晚了。"
+                              "text": "你想起巷口那把被你塞回他手里的枪，黄玫瑰似乎已经太晚了，答案早在很多年前就已经给过。"
                         },
                         {
-                              "text": "Chi Chi 没有问你手里的花，因为答案早在很多年前就已经给过。"
+                              "text": "你没有回答。\nChi Chi 也没有再问，皱了皱眉就离开了。"
                         }
                   ],
                   "choices": [
@@ -14499,7 +13179,11 @@
                               "text": "把花留在原地",
                               "next": "s_no_rose_silence_feedback",
                               "changes": {
-                                    "val": -3,
+                                    "val": -5,
+                                    "importantFlag": {
+                                          "flag": "sonny_control_seed",
+                                          "label": "守着但不靠近"
+                                    },
                                     "unlockAchievement": "ach_no_rose"
                               }
                         },
@@ -14507,7 +13191,7 @@
                               "text": "把花带回房间",
                               "next": "s_no_rose_guard_feedback",
                               "changes": {
-                                    "val": -1,
+                                    "val": 0,
                                     "unlockAchievement": "ach_no_rose"
                               }
                         }
@@ -14521,17 +13205,17 @@
                               "text": "黄玫瑰被你放在了长椅上，或许明天佣人就会把它收走，像是无声的惩罚，把你们之间那点没说出口的柔软又往暗处推了一寸。"
                         }
                   ],
-                  "next": "s_no_rose_route"
+                  "next": "s_no_rose_distant_guard"
             },
             "s_no_rose_guard_feedback": {
-                  "title": "先确认他还在",
+                  "title": "书桌上的黄玫瑰",
                   "progress": 31,
                   "segments": [
                         {
-                              "text": "你吩咐佣人把花摆在书桌上。这个命令来得突然，却暴露出你仍习惯把爱藏起来。"
+                              "text": "你把花带回房间，吩咐佣人将玫瑰摆在书桌上。\n这个指令来得突然，却被佣人记下，后来成了房间里不言明的习惯。"
                         }
                   ],
-                  "next": "s_no_rose_route"
+                  "next": "s_no_rose_late_apology"
             },
             "s_stay_family_pressure": {
                   "title": "五大家族的压力",
@@ -14687,49 +13371,16 @@
                   ],
                   "next": "ending_beside_throne"
             },
-            "s_no_rose_route": {
-                  "title": "空手回家",
-                  "progress": 32,
-                  "ambient": "garden",
-                  "segments": [
-                        {
-                              "text": "你最后空着手回了房间。黄玫瑰可能留在院子，也可能被收进抽屉；对 Chi Chi 来说，它都没有真正出现。"
-                        },
-                        {
-                              "text": "那天晚上没有争吵，沉默把你们隔开，却没有把任何人带走。"
-                        }
-                  ],
-                  "choices": [
-                        {
-                              "text": "承认自己错过了机会，把迟来的话留到以后",
-                              "next": "s_no_rose_late_apology",
-                              "changes": {
-                                    "val": 1
-                              }
-                        },
-                        {
-                              "text": "继续守着他，不再提那天生日的玫瑰",
-                              "next": "s_no_rose_distant_guard",
-                              "changes": {
-                                    "val": -2,
-                                    "importantFlag": {
-                                          "flag": "sonny_control_seed",
-                                          "label": "守着但不靠近"
-                                    }
-                              }
-                        }
-                  ]
-            },
             "s_no_rose_late_apology": {
                   "title": "迟来的话",
                   "progress": 33,
                   "ambient": "garden",
                   "segments": [
                         {
-                              "text": "几天后，你路过花店，还是没有买玫瑰。迟来的花太像补偿，补偿又太像你终于承认自己错过了什么。"
+                              "text": "几天后，你路过花店，新到的黄玫瑰依旧美丽。\n但迟来的花太像补偿，补偿又太像你终于承认自己错过了什么。"
                         },
                         {
-                              "text": "你只在晚餐时把盘子往 Chi Chi 那边推近一点。他没有抬头，却也没有把它推回来。"
+                              "text": "你只在晚餐时把盘子往 Chi Chi 那边推近一点。\n他没有抬头，却也没有把它推回来。"
                         }
                   ],
                   "next": "s16_will_route"
@@ -14754,10 +13405,10 @@
                   "ambient": "flower_shop",
                   "segments": [
                         {
-                              "text": "生日当天，黄玫瑰就在你手里。你很清楚递出去会显得多么笨拙，也很清楚藏回去更像过去的自己。"
+                              "text": "生日当天，黄玫瑰就在你手里。\n你很清楚递出去会显得多么笨拙，也很清楚藏回去更像过去的自己。"
                         },
                         {
-                              "text": "Chi Chi 看见你时没有说话，他像知道你曾经犹豫过，也像在等你承认自己还会选择柔软。"
+                              "text": "你在庭院找到 Chi Chi 时，他正在不熟练地摆弄新得到的枪；你突然又犹豫了一下。"
                         }
                   ],
                   "choices": [
@@ -14806,7 +13457,7 @@
                   "next": "s16_will_route_logic"
             },
             "s16_will_route_logic": {
-                  "title": "病房门口",
+                  "title": "遗言路线判定",
                   "progress": 40,
                   "ambient": "sickroom",
                   "routes": [
@@ -14855,7 +13506,7 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
+                              "text": "“还有一件事……你才是我的亲生儿子。Chi Chi 虽然不是我亲生的，但也是我的儿子。”",
                               "speaker": "Luciano"
                         },
                         {
@@ -14864,7 +13515,7 @@
                   ],
                   "choices": [
                         {
-                              "text": "立刻叫 Chi Chi 进来，至少别让他只看见一扇关上的门",
+                              "text": "立刻派人去找 Chi Chi，至少别让他只看见一扇关上的门",
                               "next": "s16_called_from_warm",
                               "changes": {
                                     "val": 4,
@@ -14907,7 +13558,7 @@
                   "ambient": "sickroom",
                   "segments": [
                         {
-                              "text": "Luciano 的手冷得像戒指。你站在病床边，却一直听见巷口那一晚 Chi Chi 咬住牙的呼吸。"
+                              "text": "Luciano 的手冷得像手枪。你站在病床边，却一直听见巷口那一晚 Chi Chi 咬住牙的呼吸。"
                         },
                         {
                               "text": "“把产业合法化，去竞选上院议员。我死以后，五大家族会乱，你要立刻召集他们。”",
@@ -14921,7 +13572,7 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
+                              "text": "“还有一件事……你才是我的亲生儿子。Chi Chi 虽然不是我亲生的，但也是我的儿子。”",
                               "speaker": "Luciano"
                         },
                         {
@@ -14930,7 +13581,7 @@
                   ],
                   "choices": [
                         {
-                              "text": "立刻叫 Chi Chi 进来，至少别让他只看见一扇关上的门",
+                              "text": "立刻派人去找 Chi Chi，至少别让他只看见一扇关上的门",
                               "next": "s16_called_from_shame",
                               "changes": {
                                     "val": 2,
@@ -14952,7 +13603,7 @@
                   "progress": 42,
                   "segments": [
                         {
-                              "text": "你叫 Chi Chi 进来时，想起巷口那晚他咬住牙的样子。你不是突然变仁慈，只是不想让同一种羞耻在病房门口重演。"
+                              "text": "你让人去找 Chi Chi，又想起巷口那晚他咬紧牙的样子。你不是突然变得仁慈，只是不想让同一种羞耻在病房门口重演。"
                         }
                   ],
                   "next": "s16_called_feedback"
@@ -14987,7 +13638,7 @@
                               "speaker": "Luciano"
                         },
                         {
-                              "text": "“还有一件事……你是我的亲生儿子。Chi Chi 不是。”",
+                              "text": "“还有一件事……你才是我的亲生儿子。Chi Chi 虽然不是我亲生的，但也是我的儿子。”",
                               "speaker": "Luciano"
                         },
                         {
@@ -15004,7 +13655,7 @@
                               }
                         },
                         {
-                              "text": "叫 Chi Chi 进来，不再把父亲的死也隔在门外",
+                              "text": "派人去找 Chi Chi，不再把父亲的死也隔在门外",
                               "next": "s16_called_from_control",
                               "changes": {
                                     "val": 1,
@@ -15018,7 +13669,7 @@
                   "progress": 42,
                   "segments": [
                         {
-                              "text": "Luciano 把权力交到你手里时，你几乎本能地想先接稳。可你还是叫 Chi Chi 进来，因为连父亲的死都被你隔开，就再也没有什么能被称作家。"
+                              "text": "Luciano 把权力交到你手里时，你几乎本能地想先接稳。可你还是让人去找 Chi Chi，因为连父亲的死都被你隔开，就再也没有什么能被称作家。"
                         }
                   ],
                   "next": "s16_called_feedback"
@@ -15035,7 +13686,7 @@
             },
             "s15_flower_language": {
                   "chapterTitle": "第二幕：黄玫瑰",
-                  "title": "四种花语",
+                  "title": "黄玫瑰的花语",
                   "progress": 33,
                   "ambient": "garden",
                   "segments": [
@@ -15052,7 +13703,7 @@
                   "next": "s15_flower_language_logic"
             },
             "s15_flower_language_logic": {
-                  "title": "四种花语",
+                  "title": "花语路线判定",
                   "progress": 33,
                   "ambient": "garden",
                   "routes": [
@@ -15084,7 +13735,7 @@
                               "text": "你终于把那句最难说的话交给他。声音比想象中更哑，像每个字都要先从父亲手里拿回来。"
                         },
                         {
-                              "text": "你告诉他，Luciano 最后说，你才是他的亲生儿子，Chi Chi 不是。"
+                              "text": "你告诉他，Luciano 最后说，你才是他的亲生儿子；Chi Chi 虽然不是亲生的，却也一直是他的儿子。"
                         },
                         {
                               "text": "话说出口，病房里一下安静了。你不知道自己是在交还真相，还是在亲手拆掉他最后能抓住的父亲。"
@@ -15127,10 +13778,10 @@
                         },
                         {
                               "speaker": "Luciano",
-                              "text": "“Sonnyboy……召集他们……”"
+                              "text": "“Sonnyboy……托付……给你……”"
                         },
                         {
-                              "text": "Chi Chi 推门进来时，只听见这几个碎片。Luciano 的手彻底松开，你把床边的位置让给他，也知道剩下的遗言必须由你补完。"
+                              "text": "Chi Chi 只听见这几个碎片。Luciano 的手彻底松开，他站在你让出的床边，而剩下的遗言必须由你补完。"
                         },
                         {
                               "text": "你先告诉他，Luciano 要你召集五大家族，把局面稳住。说到这里，你停了一下。最后那句关于你们两个人的话，还卡在喉咙里。"
@@ -15161,7 +13812,7 @@
                   ]
             },
             "s17_misheard": {
-                  "title": "误听遗言",
+                  "title": "错过的遗言",
                   "progress": 44,
                   "ambient": "sickroom",
                   "segments": [
@@ -15178,7 +13829,7 @@
                   ],
                   "choices": [
                         {
-                              "text": "立刻补说身世，把误听撕开",
+                              "text": "立刻补说身世，把眼前的误会撕开",
                               "next": "s17_truth_reaction",
                               "changes": {
                                     "val": 2
@@ -15253,7 +13904,7 @@
                               }
                         },
                         {
-                              "text": "告诉他家族还会逼你们立刻表态",
+                              "text": "葬礼结束后，和他一起面对空下来的位置",
                               "next": "s18_funeral_truth",
                               "changes": {
                                     "val": 1
@@ -15279,14 +13930,14 @@
                   ],
                   "choices": [
                         {
-                              "text": "承认自己也刚知道，但不再替他决定",
+                              "text": "把 Papa 的原话再交给他：不是亲生，却也是他的儿子",
                               "next": "s18_truth_refuse_decide_feedback",
                               "changes": {
                                     "val": 3
                               }
                         },
                         {
-                              "text": "先谈家族会如何吞掉你们",
+                              "text": "告诉他 Papa 的另一句：把 Chi Chi 和家族都托付给你",
                               "next": "s18_truth_survive_first_feedback",
                               "changes": {
                                     "val": -1
@@ -15332,32 +13983,34 @@
                   ]
             },
             "s19_inheritance_truth": {
-                  "title": "无从继承",
+                  "title": "知道真相的午夜",
                   "progress": 51,
                   "ambient": "meeting",
                   "segments": [
                         {
-                              "text": "Gambino 的会面请求送到时，Chi Chi 已经知道自己不是 Luciano 的亲生儿子。请柬没有因此变轻，反而像故意压在那个新伤口上。"
+                              "text": "Chi Chi 亲自拨通 Gambino 的电话，约他午夜到桑塔露琪亚会面。知道血缘真相后，他仍以 Luciano 儿子的身份报上姓名。"
                         },
                         {
-                              "speaker": "Chi Chi",
-                              "text": "“他们要看的不是血，是我们会不会先自己裂开。”"
+                              "text": "午夜，你陪他走进桑塔露琪亚。赌厅里的桌椅已经摆好；无论血缘怎样改写，你都不会让他独自走到 Gambino 面前。"
                         },
                         {
-                              "text": "这一次，他不再谈纸面身份。他只是在问，你到底会和他并肩，还是又一次替他站到前面。"
+                              "text": "真正要决定的，是当 Gambino 落座、谈判正式开始时，你是否还留在那里。"
                         }
                   ],
                   "choices": [
                         {
-                              "text": "把谈判位置交给他，然后真正退场",
+                              "text": "陪他走到桌边；谈判正式开始时离开",
                               "next": "s20_canon_leave_table",
                               "changes": {
-                                    "val": 2,
-                                    "unlockAchievement": "ach_canon_leave"
+                                    "val": -1,
+                                    "unlockAchievements": [
+                                          "ach_canon_leave",
+                                          "ach_left_family"
+                                    ]
                               }
                         },
                         {
-                              "text": "陪他坐在桌边，让他自己开口",
+                              "text": "陪他走到桌边；谈判开始后仍留下，但不替他开口",
                               "next": "s22_table_beside",
                               "changes": {
                                     "val": 3,
@@ -15436,23 +14089,6 @@
                   ],
                   "next": "ending_same_lamp"
             },
-            "s32_revenge_first_feedback": {
-                  "title": "复仇先行",
-                  "progress": 67,
-                  "ambient": "restaurant",
-                  "segments": [
-                        {
-                              "text": "你没有写信。你先把电话打给旧线，让他们盯住 Gambino 的人、封住码头、查每一条可能通往复仇的路。"
-                        },
-                        {
-                              "text": "这些命令都很像行动，也很像 Sonnyboy Bocchetti 该有的反应。可它们没有一条直接通向 Chi Chi。"
-                        },
-                        {
-                              "text": "等你终于意识到自己在清算敌人，而不是追上那个正在逃命的人，报纸上的油墨已经干了。"
-                        }
-                  ],
-                  "next": "s_late_route"
-            },
             "s16_called_feedback": {
                   "title": "叫他进来",
                   "progress": 43,
@@ -15462,7 +14098,7 @@
                               "text": "门外脚步越来越近时，Luciano 的呼吸还吊着，轻得像一根快断的线。"
                         },
                         {
-                              "text": "Chi Chi 推门进来，你把床边的位置让出来，那些话一半留在父亲的气息里，一半压在你喉咙里。"
+                              "text": "Chi Chi 慌张地推门进来，你把床边的位置让出来，那些话一半留在父亲的气息里，一半压在你喉咙里。"
                         },
                         {
                               "text": "要不要补完、先补哪一句、说出来以后会不会像借死人给自己加冕，全都变成你必须当场承担的事。"
@@ -15515,7 +14151,7 @@
                   ]
             },
             "s37_slow_from_partial_cover_feedback": {
-                  "title": "假死不完整",
+                  "title": "追去补救",
                   "progress": 76,
                   "segments": [
                         {
@@ -15646,56 +14282,6 @@
                   ],
                   "next": "s41_father_words_admit"
             },
-            "s27_flour_shell": {
-                  "title": "面粉壳",
-                  "progress": 56,
-                  "ambient": "restaurant",
-                  "segments": [
-                        {
-                              "text": "你把时间揉进面团里。面粉会遮住指纹，也会把旧姓氏暂时挡在厨房外。"
-                        },
-                        {
-                              "text": "Florence 来时，你会把新烤好的披萨推给她，等她评价名字是否太夸张。那些笑声并不虚假，只是后来回想起来太短。"
-                        }
-                  ],
-                  "next": "s28_bridge_echo"
-            },
-            "s27_ny_glance": {
-                  "title": "纽约方向",
-                  "progress": 56,
-                  "ambient": "restaurant",
-                  "segments": [
-                        {
-                              "text": "你偶尔望向纽约方向，像确认一扇已经关上的门有没有自己打开。你没有派人打听，因为一旦打听，就等于承认自己从未真正离开。"
-                        },
-                        {
-                              "text": "Florence 看见过这种回头，却没有拆穿。她把水杯推到你手边，然后继续和你争论披萨名字。"
-                        }
-                  ],
-                  "next": "s28_bridge_echo"
-            },
-            "s27_hidden_locked": {
-                  "title": "锁住暗线",
-                  "progress": 56,
-                  "ambient": "restaurant",
-                  "segments": [
-                        {
-                              "text": "你没有再联系 Mighele。从那以后，也没有一通电话替你提前解释纽约发生了什么。"
-                        }
-                  ],
-                  "next": "s28_bridge_echo"
-            },
-            "s27_hidden_note": {
-                  "title": "不许打扰",
-                  "progress": 56,
-                  "ambient": "restaurant",
-                  "segments": [
-                        {
-                              "text": "你给 Mighele 留下一句很短的话：不要替我盯着 Chi Chi。写完以后，你回到炉火前，接受自己必须从报纸或陌生人口中得知后果。"
-                        }
-                  ],
-                  "next": "s28_bridge_echo"
-            },
             "s36_known_press_details": {
                   "title": "用细节反压",
                   "progress": 75,
@@ -15739,7 +14325,7 @@
                   "next": "s15_rose_scold"
             },
             "s14_rose_warm_tease": {
-                  "title": "继续逗他",
+                  "title": "小心花刺",
                   "progress": 30,
                   "ambient": "garden",
                   "segments": [
@@ -15754,7 +14340,7 @@
                   "next": "s15_rose_scold"
             },
             "s15_keep_first_language": {
-                  "title": "第一种",
+                  "title": "没说出口的第四种",
                   "progress": 35,
                   "ambient": "garden",
                   "segments": [
@@ -15811,108 +14397,35 @@
                   ],
                   "next": "s18_funeral_truth_route"
             },
-            "s18_legal_accept_feedback": {
-                  "title": "承认继承",
-                  "progress": 46,
-                  "ambient": "funeral",
-                  "segments": [
-                        {
-                              "speaker": "你",
-                              "text": "“是的，家族产业应该由你来继承。”"
-                        },
-                        {
-                              "text": "Chi Chi 的肩膀没有放松。他要的不是一句让位，而是确认你不会在所有人面前又把椅子替他扶稳、替他坐下。"
-                        }
-                  ],
-                  "next": "s19_inheritance"
-            },
-            "s18_survive_warning_feedback": {
-                  "title": "活过今晚",
-                  "progress": 46,
-                  "ambient": "funeral",
-                  "segments": [
-                        {
-                              "speaker": "你",
-                              "text": "“继承不是坐上椅子，是活过下一晚。”"
-                        },
-                        {
-                              "text": "这话听起来像提醒，也像训诫。Chi Chi 把它听成后者，眼里的红色慢慢退下去，换成更硬的东西。"
-                        }
-                  ],
-                  "next": "s19_inheritance"
-            },
-            "s18_shield_family_feedback": {
-                  "title": "替他挡住",
-                  "progress": 46,
-                  "ambient": "funeral",
-                  "segments": [
-                        {
-                              "speaker": "你",
-                              "text": "“我会先替你挡住他们。”"
-                        },
-                        {
-                              "text": "你说的是保护。Chi Chi 听见的却是另一种接管。你们之间最深的误会，就是同一句话总能长出两把刀。"
-                        }
-                  ],
-                  "next": "s19_inheritance"
-            },
             "s18_truth_refuse_decide_feedback": {
-                  "title": "不再替他决定",
+                  "title": "父亲说过的话",
                   "progress": 48,
                   "ambient": "funeral",
                   "segments": [
                         {
                               "speaker": "你",
-                              "text": "“我也刚知道，但我不想再替你决定。”"
+                              "text": "“Papa 说，你不是他亲生的，但也是他的儿子。”"
                         },
                         {
-                              "text": "Chi Chi 没有说谢谢。他只是把视线从空椅子挪到你脸上，像在判断这是不是你第一次把选择权放回他手里。"
+                              "text": "Chi Chi 看着空下来的椅子。这句话不能替他回答自己是谁，至少没有把答案改写成由你决定。"
                         }
                   ],
                   "next": "s19_inheritance_truth"
             },
             "s18_truth_survive_first_feedback": {
-                  "title": "先谈生存",
+                  "title": "另一句遗言",
                   "progress": 48,
                   "ambient": "funeral",
                   "segments": [
                         {
                               "speaker": "你",
-                              "text": "“家族会先吃掉我们，别的以后再说。”"
+                              "text": "“Papa 还说，他把你和家族都托付给我。”"
                         },
                         {
-                              "text": "这句话很实用，也很冷。Chi Chi 明白你说得没错，却还是因为你把“以后”说得太轻而沉下脸。"
+                              "text": "这是原话，也是最容易被听成接管的一句话。Chi Chi 没有反驳，只把目光从空椅子移到你脸上。"
                         }
                   ],
                   "next": "s19_inheritance_truth"
-            },
-            "s26_departure_cook_feedback": {
-                  "title": "普通厨子",
-                  "progress": 53,
-                  "ambient": "street",
-                  "segments": [
-                        {
-                              "text": "你没有回头。布鲁克林餐厅的后门很窄，窄到足够让一个 Bocchetti 暂时假装自己只是厨子。"
-                        },
-                        {
-                              "text": "你把姓氏留在雨里，也把 Chi Chi 留在那张赌桌后面。"
-                        }
-                  ],
-                  "next": "s27_restaurant_clean"
-            },
-            "s26_departure_almost_feedback": {
-                  "title": "半路折回",
-                  "progress": 53,
-                  "ambient": "street",
-                  "segments": [
-                        {
-                              "text": "你半路折回过一次。桑塔露琪亚的灯还亮着，门缝里有低声争执，你站了很久，最后没有敲门。"
-                        },
-                        {
-                              "text": "这比直接离开更糟。因为从那以后，你不能再说自己没有机会回去。"
-                        }
-                  ],
-                  "next": "s27_restaurant_clean"
             },
             "s15_flower_language_full": {
                   "title": "四种花语",
@@ -16021,76 +14534,10 @@
                               "text": "你告诉 Chi Chi，自己会替 Luciano 稳住一切，随即让人拨通五大家族的电话。"
                         },
                         {
-                              "text": "他看着你在父亲尸骨未冷时接过命令，终于把你的沉默理解成了夺位。这个误会会被你们一起带进葬礼。"
+                              "text": "他看着你在父亲尸骨未冷时接过命令，终于把你的沉默理解成了夺位。这个误会立刻落在他那句“照法律，我才是继承人”上。"
                         }
                   ],
                   "next": "s18_funeral"
-            },
-            "s29_stevie_questioned": {
-                  "title": "先确认来意",
-                  "progress": 60,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "你转身堵住出口，让报童把手从报纸后面伸出来。他没有武器，只有冻红的手指和饿得发响的肚子。"
-                        },
-                        {
-                              "text": "“没人派我。我只是卖报纸。”",
-                              "speaker": "报童"
-                        },
-                        {
-                              "text": "确认他不是跟踪者后，你把披萨递给他，也把出口让开。他没有走，只把那张报纸举得更高。"
-                        }
-                  ],
-                  "next": "s30_newspaper_first"
-            },
-            "s31_headline_first": {
-                  "title": "先读标题",
-                  "progress": 64,
-                  "ambient": "none",
-                  "segments": [
-                        {
-                              "text": "你先读出标题：Chi Chi 杀了 Gambino 的儿子，正在被追杀。报童立刻想把纸翻正，却把上下颠倒得更明显。"
-                        },
-                        {
-                              "text": "“我不识字。但我记得别人怎么念名字。我叫 Stepano，也可以叫我 Stevie。”",
-                              "speaker": "报童"
-                        },
-                        {
-                              "text": "你重新摊平报纸，把整段消息读给他听。直到这一刻，你才知道离开的门后发生了什么；Stevie 也第一次知道自己卖出的消息会把一个人送回家。"
-                        }
-                  ],
-                  "next": "s32_letter_to_florence_first"
-            },
-            "s34_partial_completed_feedback": {
-                  "title": "补完半封信",
-                  "progress": 68,
-                  "ambient": "rain",
-                  "segments": [
-                        {
-                              "text": "你把离家、Gambino 和 Chi Chi 的名字补全。Florence 没有因此消气，但她终于能针对真正发生的事生气，而不是继续猜测。"
-                        },
-                        {
-                              "text": "“去救他。回来以后，别再给我半封信。”",
-                              "speaker": "Florence"
-                        }
-                  ],
-                  "next": "s35_return_from_paper"
-            },
-            "s34_partial_withheld_feedback": {
-                  "title": "仍留一半",
-                  "progress": 68,
-                  "ambient": "rain",
-                  "segments": [
-                        {
-                              "text": "你仍然只说 Chi Chi 有危险。Florence 没有答应相信，也没有跟来；她只是把那封信折回原样，让你带着没有说完的部分独自回纽约。"
-                        },
-                        {
-                              "text": "“这次先救人。剩下的账不会因此消失。”",
-                              "speaker": "Florence"
-                        }
-                  ],
-                  "next": "s35_return_from_paper"
             },
             "s_white_from_ten_year_coverup": {
                   "title": "再次删去看守",
